@@ -52,6 +52,31 @@ function getTransactionsById($id) {
     return $result;
 }
 
+function getTransactionById($id) {
+    global $conn;
+
+    $sql = "
+        SELECT 
+            transaksi.id AS transaksi_id,
+            anggota.id AS anggota_id,
+            anggota.nama AS nama_anggota,
+            buku.id AS buku_id,
+            buku.judul AS judul_buku,
+            buku.penulis AS penulis_buku,
+            transaksi.tanggal_peminjaman,
+            transaksi.tanggal_pengembalian,
+            transaksi.status
+        FROM transaksi
+        JOIN anggota ON transaksi.id_anggota = anggota.id
+        JOIN buku ON transaksi.id_buku = buku.id
+        WHERE transaksi.id = $id
+    ";
+
+    $result = $conn->query($sql);
+    return $result->fetch_assoc();
+}
+
+
 function deleteTransactionById($id) {
     global $conn;
     $sql = "DELETE FROM transaksi WHERE id = $id";
