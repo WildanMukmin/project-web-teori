@@ -12,7 +12,7 @@ function getBookById($id) {
     global $conn;
     $sql = "SELECT * FROM buku WHERE id = $id";
     $result = $conn->query($sql);
-    return $result;
+    return $result->fetch_assoc(); // langsung return datanya
 }
 
 function addBook($judul, $penulis, $penerbit, $tahun_terbit, $isbn, $kategori, $deskripsi, $stok) {
@@ -21,7 +21,8 @@ function addBook($judul, $penulis, $penerbit, $tahun_terbit, $isbn, $kategori, $
         INSERT INTO buku (judul, penulis, penerbit, tahun_terbit, isbn, kategori, deskripsi, stok)
         VALUES ('$judul', '$penulis', '$penerbit', '$tahun_terbit', '$isbn', '$kategori', '$deskripsi', $stok)
     ";
-    return $conn->query($sql);
+    $result = $conn->query($sql);
+    return $result;
 }
 
 function updateBook($id, $judul, $penulis, $penerbit, $tahun_terbit, $isbn, $kategori, $deskripsi, $stok) {
@@ -38,7 +39,8 @@ function updateBook($id, $judul, $penulis, $penerbit, $tahun_terbit, $isbn, $kat
             stok = $stok
         WHERE id = $id
     ";
-    return $conn->query($sql);
+   $result = $conn->query($sql);
+    return $result;
 }
 
 function deleteBook($id) {

@@ -27,6 +27,7 @@ $books = getBooks();
                 <td class="border px-4 py-2 space-x-2">
                     <a href="detail.php?id=<?php echo $book['id']; ?>" class="text-blue-600">Detail</a>
                     <a href="edit.php?id=<?php echo $book['id']; ?>" class="text-yellow-600">Edit</a>
+                    <a href="delete_process.php?id=<?php echo $book['id']; ?>" class="text-red-600" onclick="return confirm('Yakin ingin menghapus?')">Hapus</a>
                 </td>
             </tr>
         <?php endforeach; ?>
