@@ -7,13 +7,10 @@ require_once __DIR__ . '/../includes/header.php';
 ?>
 <?php
 if($role === "admin"){
-    echo "dashboard admin";
+    echo $_SESSION["user"];   
 }
 else if($role === "user"){
-    echo "dashboard user";
-}
-else{
-    echo "dashboard guest";
+    echo $_SESSION["user"];
 }
 ?>
 

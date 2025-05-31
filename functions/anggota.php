@@ -1,5 +1,5 @@
 <?php
-include("../includes/db_connection.php");
+require_once __DIR__ . '/../includes/db_connection.php';
 
 function getMembers(){
     global $conn;

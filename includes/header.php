@@ -6,7 +6,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 // Ambil data user dari session, contoh
-$is_logged_in = isset($_SESSION['user_id']);
+$is_logged_in = isset($_SESSION['user']);
 $username = $_SESSION['username'] ?? 'Wildan Mukmin';
 $role = $_SESSION['role'] ?? 'USER';
 ?>
@@ -46,7 +46,7 @@ $role = $_SESSION['role'] ?? 'USER';
                         <a href="views/peminjaman/my_history.php" class="hover:text-blue-200">Riwayat Saya</a>
                     <?php endif; ?>
                     <span class="text-blue-200">Halo, <?php echo htmlspecialchars($username); ?>!</span>
-                    <a href="logout.php" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-md transition duration-300">Logout</a>
+                    <a href="../public/auth/logout.php" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-md transition duration-300">Logout</a>
                 <?php else: ?>
                     <a href="login.php" class="hover:text-blue-200">Login</a>
                     <a href="register.php" class="bg-blue-600 hover:bg-blue-800 px-4 py-2 rounded-md transition duration-300">Register</a>
