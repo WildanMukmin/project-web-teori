@@ -93,12 +93,14 @@ $data_user = getTransactionsById($_SESSION['user']['id']);
             </thead>
             <tbody class="text-gray-700 text-sm">
               <?php $no = 1; foreach ($data_user as $row): ?>
+                <?php if ($row['status'] == 'dipinjam'): ?>
                 <tr class="hover:bg-gray-50 border-t">
                   <td class="px-6 py-4"><?= $no++ ?></td>
                   <td class="px-6 py-4"><?= htmlspecialchars($row['nama_anggota']) ?></td>
                   <td class="px-6 py-4"><?= htmlspecialchars($row['judul_buku']) ?></td>
                   <td class="px-6 py-4"><?= $row['tanggal_peminjaman'] ?></td>
                 </tr>
+                <?php endif;?>
               <?php endforeach; ?>
             </tbody>
           </table>
@@ -120,18 +122,18 @@ $data_user = getTransactionsById($_SESSION['user']['id']);
             </thead>
             <tbody class="text-gray-700 text-sm">
               <?php 
-              $dummy = [
-                ['nama' => 'Wildan', 'judul' => 'Pemrograman PHP', 'tgl_pinjam' => '2025-05-01', 'tgl_kembali' => '2025-05-04'],
-                ['nama' => 'Nael', 'judul' => 'Dasar-Dasar MySQL', 'tgl_pinjam' => '2025-05-05', 'tgl_kembali' => '2025-05-07'],
-              ];
-              $no = 1; foreach ($dummy as $row): ?>
+              
+              $no = 1; foreach ($data_user as $row): ?>
+              <?php if ($row['status'] == 'dikembalikan'): ?>
                 <tr class="hover:bg-gray-50 border-t">
                   <td class="px-6 py-4"><?= $no++ ?></td>
-                  <td class="px-6 py-4"><?= htmlspecialchars($row['nama']) ?></td>
-                  <td class="px-6 py-4"><?= htmlspecialchars($row['judul']) ?></td>
-                  <td class="px-6 py-4"><?= $row['tgl_pinjam'] ?></td>
-                  <td class="px-6 py-4"><?= $row['tgl_kembali'] ?></td>
+                  <td class="px-6 py-4"><?= htmlspecialchars($row['nama_anggota']) ?></td>
+                  <td class="px-6 py-4"><?= htmlspecialchars($row['judul_buku']) ?></td>
+                  <td class="px-6 py-4"><?= $row['tanggal_peminjaman'] ?></td>
+                  <td class="px-6 py-4"><?= $row['tanggal_pengembalian'] ?></td>
                 </tr>
+
+              <?php endif; ?>
               <?php endforeach; ?>
             </tbody>
           </table>
