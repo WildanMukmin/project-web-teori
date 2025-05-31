@@ -1,16 +1,22 @@
 <?php
 require_once __DIR__ . '/../includes/header.php';
-// if(!$is_logged_in){
-//     header("Location: ../public/login.php");
-//     exit;
-// }
+if(!$is_logged_in){
+    header("Location: ../public/auth/login.php");
+    exit;
+}
 ?>
 <?php
-if($role === "admin"){
-    echo $_SESSION["user"];   
+$user = $_SESSION['user'];
+
+if ($role === "admin") {
+    foreach ($user as $key => $value) {
+        echo htmlspecialchars($key) . ": " . htmlspecialchars($value) . "<br>";
+    }
 }
 else if($role === "user"){
-    echo $_SESSION["user"];
+    foreach ($user as $key => $value) {
+        echo htmlspecialchars($key) . ": " . htmlspecialchars($value) . "<br>";
+    }
 }
 ?>
 
