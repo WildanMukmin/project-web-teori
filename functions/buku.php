@@ -1,48 +1,49 @@
 <?php
 require_once __DIR__ . '/../includes/db_connection.php';
 
-function getAllBooks() {
+function getBooks() {
     global $conn;
-    $query = "SELECT * FROM buku";
-    $result = $conn->query($query);
-    if (!$result) {
-        die("Query Error: " . $conn->error);
-    }
-    return $result->fetch_all(MYSQLI_ASSOC);
+    $sql = "SELECT * FROM buku";
+    $result = $conn->query($sql);
+    return $result;
 }
 
 function getBookById($id) {
     global $conn;
-    $query = "SELECT * FROM buku WHERE id = ?";
-    $stmt = $conn->prepare($query);
-    if (!$stmt) {
-        die("Prepare Failed: " . $conn->error);
-    }
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    return $result->fetch_assoc();
+    $sql = "SELECT * FROM buku WHERE id = $id";
+    $result = $conn->query($sql);
+    return $result;
 }
 
-function addBook($judul, $penulis, $tahun) {
+function addBook($judul, $penulis, $penerbit, $tahun_terbit, $isbn, $kategori, $deskripsi, $stok) {
     global $conn;
-    $query = "INSERT INTO buku (judul, penulis, tahun_terbit) VALUES (?, ?, ?)";
-    $stmt = $conn->prepare($query);
-    if (!$stmt) {
-        die("Prepare Failed: " . $conn->error);
-    }
-    $stmt->bind_param("ssi", $judul, $penulis, $tahun);
-    return $stmt->execute();
+    $sql = "
+        INSERT INTO buku (judul, penulis, penerbit, tahun_terbit, isbn, kategori, deskripsi, stok)
+        VALUES ('$judul', '$penulis', '$penerbit', '$tahun_terbit', '$isbn', '$kategori', '$deskripsi', $stok)
+    ";
+    return $conn->query($sql);
 }
 
-function updateBook($id, $judul, $penulis, $tahun) {
+function updateBook($id, $judul, $penulis, $penerbit, $tahun_terbit, $isbn, $kategori, $deskripsi, $stok) {
     global $conn;
-    $query = "UPDATE buku SET judul = ?, penulis = ?, tahun_terbit = ? WHERE id = ?";
-    $stmt = $conn->prepare($query);
-    if (!$stmt) {
-        die("Prepare Failed: " . $conn->error);
-    }
-    $stmt->bind_param("ssii", $judul, $penulis, $tahun, $id);
-    return $stmt->execute();
+    $sql = "
+        UPDATE buku 
+        SET judul = '$judul',
+            penulis = '$penulis',
+            penerbit = '$penerbit',
+            tahun_terbit = '$tahun_terbit',
+            isbn = '$isbn',
+            kategori = '$kategori',
+            deskripsi = '$deskripsi',
+            stok = $stok
+        WHERE id = $id
+    ";
+    return $conn->query($sql);
+}
+
+function deleteBook($id) {
+    global $conn;
+    $sql = "DELETE FROM buku WHERE id = $id";
+    return $conn->query($sql);
 }
 ?>

@@ -3,7 +3,7 @@ $page_title = "Daftar Buku";
 require_once __DIR__ . '/../../includes/header.php';
 require_once __DIR__ . '/../../functions/buku.php';
 
-$books = getAllBooks();
+$books = getBooks();
 ?>
 
 <h2 class="text-2xl font-bold mb-4">Daftar Buku</h2>

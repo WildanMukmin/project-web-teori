@@ -52,7 +52,7 @@ function getTransactionsById($id) {
     return $result;
 }
 
-function deleteTransaction($id) {
+function deleteTransactionById($id) {
     global $conn;
     $sql = "DELETE FROM transaksi WHERE id = $id";
     $conn->query($sql);
