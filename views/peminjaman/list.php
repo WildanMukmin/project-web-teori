@@ -10,7 +10,7 @@ $data_user = getTransactionsById($_SESSION['user']['id']);
   <div class="container mx-auto px-4 py-6">
     <div class="flex justify-between items-center mb-4">
       <h1 class="text-3xl font-bold text-gray-800">📚 Daftar Peminjaman Buku</h1>
-      <a href="add.php" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-md shadow transition duration-200">
+      <a href="../buku/list.php" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-md shadow transition duration-200">
         + Tambah Peminjaman
       </a>
     </div>
@@ -79,7 +79,7 @@ $data_user = getTransactionsById($_SESSION['user']['id']);
       <!-- Peminjaman Tab -->
       <div class="tab-pane" id="peminjaman">
         <div class="flex justify-end mb-4">
-          <a href="add.php" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md shadow">+ Tambah Peminjaman</a>
+          <a href="../buku/list.php" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md shadow">+ Tambah Peminjaman</a>
         </div>
         <div class="overflow-x-auto rounded-lg shadow">
           <table class="min-w-full divide-y divide-gray-200 bg-white">
