@@ -3,27 +3,23 @@ $page_title = "Edit Anggota";
 require_once __DIR__ . '/../../includes/header.php'; 
 require_once __DIR__ . '/../../functions/anggota.php';
 
-// Security: Only allow admins to access this page
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
     header("Location: /project-web-teori/public/auth/login.php");
     exit;
 }
 
-// 1. Get the Member ID from the URL
 $member_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 if ($member_id <= 0) {
-    header("Location: list.php"); // Redirect if ID is invalid
+    header("Location: list.php");
     exit;
 }
 
-// 2. Handle Form Submission (POST Request)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nama = trim($_POST['nama']);
     $alamat = trim($_POST['alamat']);
     $nomor = trim($_POST['nomor']);
     
     if (updateMember($member_id, $nama, $alamat, $nomor)) {
-        // Redirect to the list page with a success message (optional)
         header("Location: list.php?status=updated");
         exit;
     } else {
@@ -31,10 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// 3. Fetch current member data for the form (GET Request)
 $member = getMember($member_id);
 if (!$member) {
-    // If no member is found with that ID, redirect
     header("Location: list.php?error=notfound");
     exit;
 }
