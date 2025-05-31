@@ -1,0 +1,173 @@
+<?php include_once '../../includes/header.php'; ?>
+
+<!-- List Peminjaman Admin -->
+<div class="container mx-auto px-4 py-6">
+  <div class="flex justify-between items-center mb-4">
+    <h1 class="text-3xl font-bold text-gray-800">📚 Daftar Peminjaman Buku</h1>
+    <a href="add.php" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-md shadow transition duration-200">
+      + Tambah Peminjaman
+    </a>
+  </div>
+
+  <div class="overflow-x-auto rounded-lg shadow">
+    <table class="min-w-full divide-y divide-gray-200 bg-white">
+      <thead class="bg-blue-600 text-white uppercase text-sm">
+        <tr>
+          <th class="px-6 py-3 text-left">No</th>
+          <th class="px-6 py-3 text-left">Nama Anggota</th>
+          <th class="px-6 py-3 text-left">Judul Buku</th>
+          <th class="px-6 py-3 text-left">Tanggal Pinjam</th>
+          <th class="px-6 py-3 text-left">Tanggal Kembali</th>
+          <th class="px-6 py-3 text-left">Status</th>
+          <th class="px-6 py-3 text-center">Aksi</th>
+        </tr>
+      </thead>
+      <tbody class="text-gray-700 text-sm">
+        <?php
+        $data = [
+          ['nama' => 'Wildan', 'judul' => 'Pemrograman PHP', 'tgl_pinjam' => '2025-05-01', 'tgl_kembali' => '2025-05-10', 'status' => 'Dipinjam'],
+          ['nama' => 'Nael', 'judul' => 'Dasar-Dasar MySQL', 'tgl_pinjam' => '2025-05-05', 'tgl_kembali' => '2025-05-12', 'status' => 'Dikembalikan'],
+        ];
+        $no = 1;
+        foreach ($data as $row): ?>
+          <tr class="hover:bg-gray-50 border-t">
+            <td class="px-6 py-4"><?= $no++ ?></td>
+            <td class="px-6 py-4"><?= htmlspecialchars($row['nama']) ?></td>
+            <td class="px-6 py-4"><?= htmlspecialchars($row['judul']) ?></td>
+            <td class="px-6 py-4"><?= $row['tgl_pinjam'] ?></td>
+            <td class="px-6 py-4"><?= $row['tgl_kembali'] ?></td>
+            <td class="px-6 py-4">
+              <?php if ($row['status'] == 'Dipinjam'): ?>
+                <span class="inline-block px-3 py-1 text-xs font-semibold text-yellow-800 bg-yellow-100 rounded-full">Dipinjam</span>
+              <?php else: ?>
+                <span class="inline-block px-3 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">Dikembalikan</span>
+              <?php endif; ?>
+            </td>
+            <td class="px-6 py-4 text-center space-x-2">
+              <a href="edit.php?id=<?= $no ?>" class="text-blue-600 hover:underline text-sm">✏️ Edit</a>
+              <a href="hapus.php?id=<?= $no ?>" class="text-red-600 hover:underline text-sm" onclick="return confirm('Yakin ingin menghapus?')">🗑️ Hapus</a>
+            </td>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- List Peminjaman User -->
+<div class="min-h-screen bg-gray-100 px-4 py-8">
+    <div class="max-w-6xl mx-auto bg-white shadow-lg rounded-lg p-6">
+        <h1 class="text-3xl font-bold text-center text-blue-700 mb-6">📖 Daftar Aktivitas Anggota</h1>
+
+        <!-- Tabs -->
+        <div class="mb-4 border-b border-gray-200">
+            <ul class="flex space-x-4" id="tabs">
+                <li>
+                <button class="tab-button text-blue-700 font-semibold border-b-2 border-blue-700 px-4 py-2" data-tab="peminjaman">Peminjaman</button>
+                </li>
+                <li>
+                <button class="tab-button text-gray-500 hover:text-blue-700 px-4 py-2" data-tab="pengembalian">Pengembalian</button>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Tab Content -->
+        <div id="tab-content">
+            <!-- Peminjaman Tab -->
+            <div class="tab-pane" id="peminjaman">
+                <div class="flex justify-end mb-4">
+                <a href="add.php" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md shadow">+ Tambah Peminjaman</a>
+                </div>
+                <div class="overflow-x-auto rounded-lg shadow">
+                    <table class="min-w-full divide-y divide-gray-200 bg-white">
+                        <thead class="bg-blue-600 text-white uppercase text-sm">
+                        <tr>
+                            <th class="px-6 py-3 text-left">No</th>
+                            <th class="px-6 py-3 text-left">Nama Anggota</th>
+                            <th class="px-6 py-3 text-left">Judul Buku</th>
+                            <th class="px-6 py-3 text-left">Tanggal Pinjam</th>
+                        </tr>
+                        </thead>
+                        <tbody class="text-gray-700 text-sm">
+                        <?php
+                        $data = [
+                            ['nama' => 'Wildan', 'judul' => 'Pemrograman PHP', 'tgl_pinjam' => '2025-05-01'],
+                            ['nama' => 'Nael', 'judul' => 'Dasar-Dasar MySQL', 'tgl_pinjam' => '2025-05-05'],
+                        ];
+                        $no = 1;
+                        foreach ($data as $row): ?>
+                            <tr class="hover:bg-gray-50 border-t">
+                            <td class="px-6 py-4"><?= $no++ ?></td>
+                            <td class="px-6 py-4"><?= htmlspecialchars($row['nama']) ?></td>
+                            <td class="px-6 py-4"><?= htmlspecialchars($row['judul']) ?></td>
+                            <td class="px-6 py-4"><?= $row['tgl_pinjam'] ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Pengembalian Tab -->
+            <div class="tab-pane hidden" id="pengembalian">
+                <div class="overflow-x-auto rounded-lg shadow">
+                    <table class="min-w-full divide-y divide-gray-200 bg-white">
+                        <thead class="bg-blue-600 text-white uppercase text-sm">
+                        <tr>
+                            <th class="px-6 py-3 text-left">No</th>
+                            <th class="px-6 py-3 text-left">Nama Anggota</th>
+                            <th class="px-6 py-3 text-left">Judul Buku</th>
+                            <th class="px-6 py-3 text-left">Tanggal Pinjam</th>
+                            <th class="px-6 py-3 text-left">Tanggal Pengembalian</th>
+                        </tr>
+                        </thead>
+                        <tbody class="text-gray-700 text-sm">
+                        <?php
+                        $data = [
+                            ['nama' => 'Wildan', 'judul' => 'Pemrograman PHP', 'tgl_pinjam' => '2025-05-01', 'tgl_kembali' => '2025-05-04'],
+                            ['nama' => 'Nael', 'judul' => 'Dasar-Dasar MySQL', 'tgl_pinjam' => '2025-05-05', 'tgl_kembali' => '2025-05-07'],
+                        ];
+                        $no = 1;
+                        foreach ($data as $row): ?>
+                            <tr class="hover:bg-gray-50 border-t">
+                            <td class="px-6 py-4"><?= $no++ ?></td>
+                            <td class="px-6 py-4"><?= htmlspecialchars($row['nama']) ?></td>
+                            <td class="px-6 py-4"><?= htmlspecialchars($row['judul']) ?></td>
+                            <td class="px-6 py-4"><?= $row['tgl_pinjam'] ?></td>
+                            <td class="px-6 py-4"><?= $row['tgl_kembali'] ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+  const tabButtons = document.querySelectorAll('.tab-button');
+  const tabPanes = document.querySelectorAll('.tab-pane');
+
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      tabButtons.forEach(btn => btn.classList.remove('text-blue-700', 'font-semibold', 'border-b-2', 'border-blue-700'));
+      button.classList.add('text-blue-700', 'font-semibold', 'border-b-2', 'border-blue-700');
+
+      const target = button.getAttribute('data-tab');
+      tabPanes.forEach(pane => {
+        pane.classList.add('hidden');
+        if (pane.id === target) {
+          pane.classList.remove('hidden');
+        }
+      });
+    });
+  });
+</script>
+
+
+
+<?php include_once '../../includes/footer.php'; ?>
