@@ -58,4 +58,16 @@ function deleteTransactionById($id) {
     $conn->query($sql);
 }
 
+function addTransaction($id_anggota, $id_buku, $tanggal_peminjaman, $tanggal_pengembalian) {
+    global $conn;
+    $sql = "INSERT INTO transaksi (id_anggota, id_buku, tanggal_peminjaman, tanggal_pengembalian) VALUES ($id_anggota, $id_buku, '$tanggal_peminjaman', '$tanggal_pengembalian')";
+    $conn->query($sql);
+}
+
+function updateTransaction($id, $id_anggota, $id_buku, $tanggal_peminjaman, $tanggal_pengembalian) {
+    global $conn;
+    $sql = "UPDATE transaksi SET id_anggota = $id_anggota, id_buku = $id_buku, tanggal_peminjaman = '$tanggal_peminjaman', tanggal_pengembalian = '$tanggal_pengembalian' WHERE id = $id";
+    $conn->query($sql); 
+}
+
 ?>
