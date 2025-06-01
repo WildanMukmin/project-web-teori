@@ -20,7 +20,7 @@ require_once __DIR__ . '/../includes/header.php';
             <p class="text-xl text-gray-800">
                 Anda telah login sebagai <span class="font-semibold"><?php echo htmlspecialchars($username); ?></span>.
             </p>
-            <a href="<?php echo $role === 'admin' ? 'dashboard_admin.php' : 'dashboard_user.php'; ?>" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 mt-4">
+            <a href="<?php echo $role === 'admin' ? '../views/dashboard.php' : '../views/dashboard.php'; ?>" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 mt-4">
                 Menuju Dashboard
             </a>
         <?php endif; ?>
