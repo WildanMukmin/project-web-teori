@@ -32,7 +32,6 @@ $transaksi = getTransactionById($id);
         <input type="hidden" name="id_peminjam" value="<?= $transaksi['anggota_id'] ?>">
       </div>
 
-      <!-- Tanggal Pinjam & Kembali -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label class="block font-medium text-gray-700 mb-1">Tanggal Peminjaman</label>
@@ -44,7 +43,6 @@ $transaksi = getTransactionById($id);
         </div>
       </div>
 
-      <!-- Status -->
       <div>
         <label class="block font-medium text-gray-700 mb-1">Status</label>
         <select name="status" class="w-full px-4 py-2 border rounded-md">
