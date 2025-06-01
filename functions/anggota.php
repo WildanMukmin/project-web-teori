@@ -20,6 +20,7 @@ function addMember($nama, $email, $password, $nomor, $alamat) {
     // Validasi data tidak kosong (opsional tambahan)
     if (empty($nama) || empty($email) || empty($_POST['password']) || empty($nomor) || empty($alamat)) {
         $_SESSION['error'] = "Semua field wajib diisi.";
+        $_SESSION['error_time'] = time();
         header("Location: list.php");
         exit;
     }
@@ -29,6 +30,7 @@ function addMember($nama, $email, $password, $nomor, $alamat) {
 
     if ($checkResult && mysqli_num_rows($checkResult) > 0) {
         $_SESSION['error'] = "Email sudah terdaftar.";
+        $_SESSION['error_time'] = time();
         header("Location: list.php");
         exit;
     }
@@ -38,10 +40,12 @@ function addMember($nama, $email, $password, $nomor, $alamat) {
 
     if (mysqli_query($conn, $insertQuery)) {
         $_SESSION['success'] = "Anggota berhasil ditambahkan.";
+        $_SESSION['success_time'] = time();
         header("Location: list.php");
         exit;
     } else {
         $_SESSION['error'] = "Terjadi kesalahan saat menyimpan data.";
+        $_SESSION['error_time'] = time();
         header("Location: list.php");
         exit;
     }
