@@ -15,11 +15,36 @@ function getMember($member_id) {
     return $result->fetch_assoc();
 }
 
-function addMember($nama, $email, $password, $email_password, $email_password_confirm){
+function addMember($nama, $email, $password, $nomor, $alamat) {
     global $conn;
-    $sql = "INSERT INTO anggota (nama, email, password) VALUES ('$nama', '$email', '$password')";
-    $result = $conn->query($sql);
-    return $result;
+    // Validasi data tidak kosong (opsional tambahan)
+    if (empty($nama) || empty($email) || empty($_POST['password']) || empty($nomor) || empty($alamat)) {
+        $_SESSION['error'] = "Semua field wajib diisi.";
+        header("Location: list.php");
+        exit;
+    }
+
+    $checkQuery = "SELECT * FROM anggota WHERE email = '$email'";
+    $checkResult = mysqli_query($conn, $checkQuery);
+
+    if ($checkResult && mysqli_num_rows($checkResult) > 0) {
+        $_SESSION['error'] = "Email sudah terdaftar.";
+        header("Location: list.php");
+        exit;
+    }
+
+    $insertQuery = "INSERT INTO anggota (nama, email, password, nomor, alamat) 
+                    VALUES ('$nama', '$email', '$password', '$nomor', '$alamat')";
+
+    if (mysqli_query($conn, $insertQuery)) {
+        $_SESSION['success'] = "Anggota berhasil ditambahkan.";
+        header("Location: list.php");
+        exit;
+    } else {
+        $_SESSION['error'] = "Terjadi kesalahan saat menyimpan data.";
+        header("Location: list.php");
+        exit;
+    }
 }
 
 function updateMember($id, $nama, $alamat, $nomor) {

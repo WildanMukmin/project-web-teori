@@ -14,7 +14,18 @@ $members = getMembers();
             + Tambah Anggota
         </a>
     </div>
-
+    <div>
+        <?php if (isset($_SESSION['success'])): ?>
+            <div class="bg-green-100 text-green-700 px-4 py-3 mb-4 rounded-lg">
+                <?php echo $_SESSION['success']; ?>
+            </div>
+        <?php endif; ?>
+        <?php if (isset($_SESSION['error'])): ?>
+            <div class="bg-red-100 text-red-700 px-4 py-3 mb-4 rounded-lg">
+                <?php echo $_SESSION['error']; ?>
+            </div>
+        <?php endif; ?>
+    </div>
     <div class="overflow-x-auto rounded-lg shadow">
         <table class="min-w-full divide-y divide-gray-200 bg-white">
             <thead class="bg-blue-600 text-white uppercase text-sm">

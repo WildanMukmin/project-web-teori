@@ -6,24 +6,19 @@ require_once '../../includes/gate_admin.php';
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (!empty($_POST['nama']) && !empty($_POST['email']) && !empty($_POST['password'])) {
-        
-        $is_added = addMember(
-            $_POST['nama'],
-            $_POST['email'],
-            $_POST['password'],
-            $_POST['nomor'],
-            $_POST['alamat']
-        );
+    $nama = mysqli_real_escape_string($conn, trim($_POST['nama']));
+    $email = mysqli_real_escape_string($conn, trim($_POST['email']));
+    $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT);
+    $nomor = mysqli_real_escape_string($conn, trim($_POST['nomor']));
+    $alamat = mysqli_real_escape_string($conn, trim($_POST['alamat']));
 
-        if ($is_added) {
-            header("Location: list.php?status=added");
-            exit;
-        } else {
-            $error_message = "Gagal menambahkan anggota. Email mungkin sudah terdaftar.";
-        }
+    // Validasi data tidak kosong (opsional tambahan)
+    if (empty($nama) || empty($email) || empty($_POST['password']) || empty($nomor) || empty($alamat)) {
+        $error_message = "Semua field wajib diisi.";
     } else {
-        $error_message = "Nama, Email, dan Password wajib diisi.";
+        addMember($nama, $email, $password, $nomor, $alamat);
+        header("Location: list.php");
+        exit;
     }
 }
 ?>
