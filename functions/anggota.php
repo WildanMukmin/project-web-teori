@@ -15,9 +15,9 @@ function getMember($member_id) {
     return $result->fetch_assoc();
 }
 
-function addMember($name, $email, $password, $email_password, $email_password_confirm){
+function addMember($nama, $email, $password, $email_password, $email_password_confirm){
     global $conn;
-    $sql = "INSERT INTO anggota (name, email, password) VALUES ('$name', '$email', '$password')";
+    $sql = "INSERT INTO anggota (nama, email, password) VALUES ('$nama', '$email', '$password')";
     $result = $conn->query($sql);
     return $result;
 }
@@ -36,6 +36,12 @@ function updateMember($id, $nama, $alamat, $nomor) {
     } else {
         return false;
     }
+}
+
+function deleteMember($id) {
+    global $conn;
+    $sql = "DELETE FROM anggota WHERE id = $id";
+        return $conn->query($sql);
 }
 
 ?>
