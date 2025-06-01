@@ -70,9 +70,9 @@ $base_url = "http://localhost/project-web-teori";
                 <a href="<?= $base_url ?>/public/auth/logout.php"
                    class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-md transition duration-300">Logout</a>
             <?php else: ?>
-                <a href="<?= $base_url ?>/public/auth/login.php" class="hover:text-blue-200">Login</a>
+                <a href="<?= $base_url ?>/public/auth/login.php" class="bg-blue-400 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-md transition duration-300">Login</a>
                 <a href="<?= $base_url ?>/public/auth/register.php"
-                   class="bg-blue-600 hover:bg-blue-800 px-4 py-2 rounded-md transition duration-300">Register</a>
+                   class="bg-blue-400 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-md transition duration-300">Register</a>
             <?php endif; ?>
         </div>
     </nav>
