@@ -30,20 +30,42 @@ include("config.php");
         <div class="flex items-center space-x-6">
             <?php if ($is_logged_in): ?>
                 <?php if ($role === 'admin'): ?>
-                    <a href="<?= $base_url ?>/views/anggota/list.php" class="hover:text-blue-200">Kelola Anggota</a>
-                    <a href="<?= $base_url ?>/views/buku/list.php" class="hover:text-blue-200">Kelola Buku</a>
-                    <a href="<?= $base_url ?>/views/peminjaman/list.php" class="hover:text-blue-200">Kelola Peminjaman</a>
+                    <a href="<?= $base_url ?>/views/dashboard.php" class="inline-flex items-center space-x-2 bg-blue-400 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-md transition duration-300">
+                        <i data-lucide="house" class="h-5 w-5"></i>
+                        <span>Dashboard</span>
+                </a>
+                    <a href="<?= $base_url ?>/views/anggota/list.php" class="inline-flex items-center space-x-2 bg-blue-400 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-md transition duration-300">
+                        <i data-lucide="users-round" class="h-5 w-5"></i>
+                        <span>Kelola Anggota</span>
+                </a>
+                    <a href="<?= $base_url ?>/views/buku/list.php" class="inline-flex items-center space-x-2 bg-blue-400 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-md transition duration-300">
+                        <i data-lucide="book-copy" class="h-5 w-5"></i>
+                        <span>Kelola Buku</span>
+                    </a>
+                    <a href="<?= $base_url ?>/views/peminjaman/list.php" class="inline-flex items-center space-x-2 bg-blue-400 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-md transition duration-300">
+                        <i data-lucide="hand-helping" class="h-5 w-5"></i>
+                        <span>Kelola Peminjaman</span>
+                    </a>
                 <?php elseif ($role === 'user'): ?>
-                    <a href="<?= $base_url ?>/views/buku/list.php" class="hover:text-blue-200">Koleksi Buku</a>
-                    <a href="<?= $base_url ?>/views/peminjaman/my_history.php" class="hover:text-blue-200">Riwayat Peminjaman</a>
+                    <a href="<?= $base_url ?>/views/dashboard.php" class="inline-flex items-center space-x-2 bg-blue-400 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-md transition duration-300">
+                        <i data-lucide="house" class="h-5 w-5"></i>
+                        <span>Dashboard</span>
+                </a>
+                    <a href="<?= $base_url ?>/views/buku/list.php" class="inline-flex items-center space-x-2 bg-blue-400 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-md transition duration-300">
+                        <i data-lucide="book-copy" class="h-5 w-5"></i>
+                        <span>Koleksi Buku</span>
+                    </a>
+                    <a href="<?= $base_url ?>/views/peminjaman/my_history.php" class="inline-flex items-center space-x-2 bg-blue-400 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-md transition duration-300">
+                        <i data-lucide="hand-helping" class="h-5 w-5"></i>
+                        <span>Riwayat Peminjaman</span>
+                    </a>
                 <?php endif; ?>
-                <span class="text-blue-200">Halo, <?= htmlspecialchars($username); ?>!</span>
                 <a href="<?= $base_url ?>/public/auth/logout.php"
                    class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-md transition duration-300">Logout</a>
             <?php else: ?>
-                <a href="<?= $base_url ?>/public/auth/login.php" class="hover:text-blue-200">Login</a>
+                <a href="<?= $base_url ?>/public/auth/login.php" class="bg-blue-400 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-md transition duration-300">Login</a>
                 <a href="<?= $base_url ?>/public/auth/register.php"
-                   class="bg-blue-600 hover:bg-blue-800 px-4 py-2 rounded-md transition duration-300">Register</a>
+                   class="bg-blue-400 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-md transition duration-300">Register</a>
             <?php endif; ?>
         </div>
     </nav>
