@@ -2,15 +2,16 @@
 $page_title = "Edit Buku";
 require_once __DIR__ . '/../../includes/header.php';
 require_once __DIR__ . '/../../functions/buku.php';
+require_once '../../includes/gate_admin.php';
 
 $id = $_GET['id'];
 $book = getBookById($id);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    updateBook($id, $_POST['judul'], $_POST['penulis'], $_POST['tahun']);
-    header('Location: list.php');
-    exit;
-}
+// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+//     updateBook($id, $_POST['judul'], $_POST['penulis'], $_POST['tahun']);
+//     header('Location: list.php');
+//     exit;
+// }
 ?>
 
 <h2 class="text-2xl font-bold mb-4">Edit Buku</h2>

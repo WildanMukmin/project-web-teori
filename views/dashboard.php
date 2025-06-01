@@ -1,14 +1,7 @@
 <?php
 require_once __DIR__ . '/../includes/header.php';
 require_once __DIR__ . '/../functions/dashboard.php';
-
-if(!$is_logged_in){
-    header("Location: ../public/auth/login.php");
-    exit;
-}
-?>
-
-<?php
+require_once '../includes/gate_auth.php';
 
 $user = $_SESSION['user'];
 $admin_name = $user['nama'];
@@ -65,8 +58,6 @@ else if($role === "user"){
     </div>
 <?php
 }
-?>
 
-<?php
 require_once __DIR__ . '/../includes/footer.php';
 ?>

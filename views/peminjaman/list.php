@@ -1,6 +1,7 @@
 <?php 
 include_once '../../includes/header.php';
 include('../../functions/peminjaman.php');
+require_once '../../includes/gate_auth.php';
 $data_admin = getTransactions();
 $data_user = getTransactionsById($_SESSION['user']['id']);
 ?>

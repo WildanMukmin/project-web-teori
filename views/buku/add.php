@@ -2,9 +2,10 @@
 $page_title = "Tambah Buku";
 require_once __DIR__ . '/../../includes/header.php';
 require_once __DIR__ . '/../../functions/buku.php';
+require_once '../../includes/gate_auth.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    addBook($_POST['judul'], $_POST['penulis'], $_POST['tahun']);
+    // addBook($_POST['judul'], $_POST['penulis'], $_POST['tahun']);
     header('Location: list.php');
     exit;
 }

@@ -2,11 +2,7 @@
 $page_title = "Tambah Anggota";
 require_once __DIR__ . '/../../includes/header.php'; 
 require_once __DIR__ . '/../../functions/anggota.php';
-
-if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
-    header("Location: /project-web-teori/public/auth/login.php");
-    exit;
-}
+require_once '../../includes/gate_admin.php';
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
