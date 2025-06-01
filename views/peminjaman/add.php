@@ -4,8 +4,20 @@ require_once '../../includes/db_connection.php';
 require_once '../../functions/buku.php';
 require_once '../../includes/gate_auth.php';
 
-$id = $_GET["id"];
+// Cek apakah 'id' ada di URL dan valid
+if (!isset($_GET['id']) || empty($_GET['id'])) {
+    die("ID buku tidak ditemukan. <a href='list.php'>Kembali ke daftar buku</a>");
+}
+
+$id = intval($_GET['id']);
+
+// Ambil data buku berdasarkan id
 $buku = getBookById($id);
+
+// Cek apakah buku ditemukan
+if (!$buku) {
+    die("Buku dengan ID $id tidak ditemukan. <a href='list.php'>Kembali ke daftar buku</a>");
+}
 ?>
 
 <div class="min-h-screen bg-gray-100 flex items-center justify-center px-4 py-8">
@@ -49,7 +61,6 @@ $buku = getBookById($id);
           <input type="date" name="tanggal_pengembalian" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
         </div>
       </div>
-
 
       <div class="flex justify-end space-x-3 pt-4">
         <a href="list.php" class="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-md transition">Batal</a>
