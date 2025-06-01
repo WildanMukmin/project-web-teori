@@ -33,10 +33,10 @@ $members = getMembers();
                     <?php foreach ($members as $member): ?>
                         <tr class="hover:bg-gray-50 border-t">
                             <td class="px-6 py-4"><?php echo $no++; ?></td>
-                            <td class="px-6 py-4"><?php echo htmlspecialchars($member['nama']); ?></td>
-                            <td class="px-6 py-4"><?php echo htmlspecialchars($member['email']); ?></td>
-                            <td class="px-6 py-4"><?php echo htmlspecialchars($member['alamat']); ?></td>
-                            <td class="px-6 py-4"><?php echo htmlspecialchars($member['nomor']); ?></td>
+                            <td class="px-6 py-4"><?php echo htmlspecialchars($member['nama']?? ''); ?></td>
+                            <td class="px-6 py-4"><?php echo htmlspecialchars($member['email']?? ''); ?></td>
+                            <td class="px-6 py-4"><?php echo htmlspecialchars($member['alamat']?? ''); ?></td>
+                            <td class="px-6 py-4"><?php echo htmlspecialchars($member['nomor']?? ''); ?></td>
                             <td class="px-6 py-4 text-center space-x-2">
                                 <a href="edit.php?id=<?php echo $member['id']; ?>" class="text-blue-600 hover:underline text-sm">✏️ Edit</a>
                                 <a href="delete.php?id=<?php echo $member['id']; ?>" class="text-red-600 hover:underline text-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus anggota ini?');">🗑️ Hapus</a>
