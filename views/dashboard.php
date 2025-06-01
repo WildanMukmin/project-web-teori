@@ -55,7 +55,6 @@ else if($role === "user"){
 
     $user_id = $_SESSION['user']['id'];
     
-    // Kita tetap menggunakan fungsi ini karena sudah efisien
     $borrowed_books_list = getBorrowedBooksByUser($user_id);
     $borrowed_count = count($borrowed_books_list);
 ?>
