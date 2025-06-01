@@ -89,6 +89,8 @@ $data_user = getTransactionsById($_SESSION['user']['id']);
                 <th class="px-6 py-3 text-left">Nama Anggota</th>
                 <th class="px-6 py-3 text-left">Judul Buku</th>
                 <th class="px-6 py-3 text-left">Tanggal Pinjam</th>
+                <th class="px-6 py-3 text-left">Tanggal Pengembalian</th>
+                <th class="px-6 py-3 text-left">Status</th>
               </tr>
             </thead>
             <tbody class="text-gray-700 text-sm">
@@ -99,6 +101,8 @@ $data_user = getTransactionsById($_SESSION['user']['id']);
                   <td class="px-6 py-4"><?= htmlspecialchars($row['nama_anggota']) ?></td>
                   <td class="px-6 py-4"><?= htmlspecialchars($row['judul_buku']) ?></td>
                   <td class="px-6 py-4"><?= $row['tanggal_peminjaman'] ?></td>
+                  <td class="px-6 py-4"><?= $row['tanggal_pengembalian'] ?></td>
+                  <td class="px-6 py-4"><?= $row['status'] ?></td>
                 </tr>
                 <?php endif;?>
               <?php endforeach; ?>
@@ -118,6 +122,7 @@ $data_user = getTransactionsById($_SESSION['user']['id']);
                 <th class="px-6 py-3 text-left">Judul Buku</th>
                 <th class="px-6 py-3 text-left">Tanggal Pinjam</th>
                 <th class="px-6 py-3 text-left">Tanggal Pengembalian</th>
+                <th class="px-6 py-3 text-left">Status</th>
               </tr>
             </thead>
             <tbody class="text-gray-700 text-sm">
@@ -131,6 +136,7 @@ $data_user = getTransactionsById($_SESSION['user']['id']);
                   <td class="px-6 py-4"><?= htmlspecialchars($row['judul_buku']) ?></td>
                   <td class="px-6 py-4"><?= $row['tanggal_peminjaman'] ?></td>
                   <td class="px-6 py-4"><?= $row['tanggal_pengembalian'] ?></td>
+                  <td class="px-6 py-4"><?= $row['status'] ?></td>
                 </tr>
 
               <?php endif; ?>

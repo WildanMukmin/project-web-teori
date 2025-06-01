@@ -42,7 +42,7 @@ $base_url = "http://localhost/project-web-teori";
                     <a href="<?= $base_url ?>/views/peminjaman/list.php" class="hover:text-blue-200">Kelola Peminjaman</a>
                 <?php elseif ($role === 'user'): ?>
                     <a href="<?= $base_url ?>/views/buku/list.php" class="hover:text-blue-200">Koleksi Buku</a>
-                    <a href="<?= $base_url ?>/views/peminjaman/my_history.php" class="hover:text-blue-200">Riwayat Peminjaman</a>
+                    <a href="<?= $base_url ?>/views/peminjaman/list.php" class="hover:text-blue-200">Riwayat Peminjaman</a>
                 <?php endif; ?>
                 <span class="text-blue-200">Halo, <?= htmlspecialchars($username); ?>!</span>
                 <a href="<?= $base_url ?>/public/auth/logout.php"

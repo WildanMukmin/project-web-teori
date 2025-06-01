@@ -89,9 +89,9 @@ function addTransaction($id_anggota, $id_buku, $tanggal_peminjaman, $tanggal_pen
     $conn->query($sql);
 }
 
-function updateTransaction($id, $id_anggota, $id_buku, $tanggal_peminjaman, $tanggal_pengembalian) {
+function updateTransaction($id, $id_anggota, $id_buku, $tanggal_peminjaman, $tanggal_pengembalian, $status) {
     global $conn;
-    $sql = "UPDATE transaksi SET id_anggota = $id_anggota, id_buku = $id_buku, tanggal_peminjaman = '$tanggal_peminjaman', tanggal_pengembalian = '$tanggal_pengembalian' WHERE id = $id";
+    $sql = "UPDATE transaksi SET id_anggota = $id_anggota, id_buku = $id_buku, tanggal_peminjaman = '$tanggal_peminjaman', tanggal_pengembalian = '$tanggal_pengembalian', status = '$status' WHERE id = $id";
     $conn->query($sql); 
 }
 
