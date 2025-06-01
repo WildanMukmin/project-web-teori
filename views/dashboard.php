@@ -51,10 +51,62 @@ if ($role === "admin") {
 <?php
 }
 else if($role === "user"){
+    require_once __DIR__ . '/../functions/peminjaman.php';
+
+    $user_id = $_SESSION['user']['id'];
+    $all_my_transactions = getTransactionsById($user_id);
+
+    $borrowed_books_list = [];
+    $borrowed_count = 0;
+
+    if ($all_my_transactions && $all_my_transactions->num_rows > 0) {
+        foreach ($all_my_transactions as $transaction) {
+            if ($transaction['status'] === 'dipinjam') {
+                $borrowed_books_list[] = $transaction;
+                $borrowed_count++;
+            }
+        }
+    }
 ?>
-    <div class="bg-white p-8 rounded-lg shadow-md">
-        <h1 class="text-2xl font-bold mb-4">Selamat Datang, <?php echo htmlspecialchars($user['nama']); ?>!</h1>
-        <p>Gunakan menu di atas untuk menelusuri buku dan melihat riwayat peminjaman Anda.</p>
+    <div>
+        <h1 class="text-3xl font-bold text-gray-800">Halo, <?php echo htmlspecialchars($user['nama']); ?>!</h1>
+        <div class=" gap-6 mb-8">
+            <div class="lg:col-span-1 bg-blue-100 p-6 rounded-lg  flex items-center space-x-4">
+                <div class="bg-blue-600 p-4 rounded-lg">
+                    <i data-lucide="book-check" class="h-8 w-8 text-white"></i>
+                </div>
+                <div>
+                    <p class="text-gray-500 text-sm">Buku Sedang Dipinjam</p>
+                    <p class="text-3xl font-bold text-gray-800"><?php echo $borrowed_count; ?></p>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h2 class="text-xl font-semibold text-gray-700 mb-4">Daftar Buku Pinjaman Anda</h2>
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <ul class="divide-y divide-gray-200">
+                    <?php if (!empty($borrowed_books_list)): ?>
+                        <?php foreach ($borrowed_books_list as $book): ?>
+                            <li class="p-4 flex justify-between items-center">
+                                <div class="flex items-center space-x-3">
+                                    <i data-lucide="book-open" class="h-6 w-6 text-gray-500"></i>
+                                    <span class="font-medium text-gray-800"><?php echo htmlspecialchars($book['judul_buku']); ?></span>
+                                </div>
+                                <div class="text-sm text-gray-600">
+                                    <span class="font-semibold">Batas Pengembalian:</span>
+                                    <span class="text-red-600 font-bold"><?php echo date("d M Y", strtotime($book['tanggal_pengembalian'])); ?></span>
+                                </div>
+                            </li>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <li class="p-6 text-center text-gray-500">
+                            Anda sedang tidak meminjam buku. Saatnya ke perpustakaan!
+                        </li>
+                    <?php endif; ?>
+                </ul>
+            </div>
+        </div>
     </div>
 <?php
 }
