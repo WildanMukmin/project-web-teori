@@ -48,7 +48,7 @@ include("config.php");
                     </a>
                 <?php elseif ($role === 'user'): ?>
                     <a href="<?= $base_url ?>/views/buku/list.php" class="hover:text-blue-200">Koleksi Buku</a>
-                    <a href="<?= $base_url ?>/views/peminjaman/my_history.php" class="hover:text-blue-200">Riwayat Peminjaman</a>
+                    <a href="<?= $base_url ?>/views/peminjaman/list.php" class="hover:text-blue-200">Riwayat Peminjaman</a>
                 <?php endif; ?>
                 <a href="<?= $base_url ?>/public/auth/logout.php"
                    class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-md transition duration-300">Logout</a>
