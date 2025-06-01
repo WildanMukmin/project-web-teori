@@ -3,13 +3,11 @@ $page_title = "Daftar Anggota";
 require_once __DIR__ . '/../../includes/header.php'; 
 require_once __DIR__ . '/../../functions/anggota.php';
 
-// Security: Only allow admins to access this page
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
     header("Location: /project-web-teori/public/auth/login.php");
     exit;
 }
 
-// Fetch all members from the database
 $members = getMembers();
 ?>
 
