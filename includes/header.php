@@ -25,7 +25,7 @@ include("config.php");
     <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
         <a href="<?= $is_logged_in ?  $base_url.'/views/dashboard.php' : $base_url.'/public/index.php' ?>"
            class="text-2xl font-bold">
-            Perpustakaan Kita
+            OnLibrary
         </a>
         <div class="flex items-center space-x-6">
             <?php if ($is_logged_in): ?>

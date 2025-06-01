@@ -5,7 +5,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
             
             <div>
-                <h3 class="text-lg font-semibold mb-3 uppercase">About OnLibrary</h3>
+                <h3 class="text-lg font-semibold mb-3">ABOUT OnLibrary</h3>
                 <p class="text-sm leading-relaxed">
                 Sistem Manajemen Perpustakaan yang membantu pengelolaan buku, anggota, dan transaksi secara efektif dan mudah.
                 </p>
