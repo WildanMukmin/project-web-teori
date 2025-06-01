@@ -3,7 +3,7 @@ $page_title = "Daftar Buku";
 require_once __DIR__ . '/../../includes/header.php';
 require_once __DIR__ . '/../../functions/buku.php';
 
-$books = getBooks();
+$books = getBooks(); // Ambil data buku dari database
 ?>
 
 <!-- Tombol atas -->
@@ -11,7 +11,8 @@ $books = getBooks();
     <a href="../peminjaman/add.php" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
         + Pinjam Buku
     </a>
-    <a href="add.php" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+    <!-- Tambah link ID ke add.php -->
+    <a href="add.php?id=0" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
         + Tambah Buku
     </a>
 </div>
