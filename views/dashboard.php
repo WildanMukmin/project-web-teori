@@ -54,15 +54,17 @@ else if($role === "user"){
     require_once __DIR__ . '/../functions/peminjaman.php';
 
     $user_id = $_SESSION['user']['id'];
-    $all_my_transactions = getTransactionsById($user_id);
-
+    
+    // Kita tetap menggunakan fungsi ini karena sudah efisien
     $borrowed_books_list = getBorrowedBooksByUser($user_id);
     $borrowed_count = count($borrowed_books_list);
 ?>
     <div>
         <h1 class="text-3xl font-bold text-gray-800">Halo, <?php echo htmlspecialchars($user['nama']); ?>!</h1>
-        <div class=" gap-6 mb-8">
-            <div class="lg:col-span-1 bg-blue-100 p-6 rounded-lg  flex items-center space-x-4">
+        <p class="text-gray-600 mb-8">Berikut adalah ringkasan aktivitas perpustakaan Anda.</p>
+
+        <div class="mb-8">
+            <div class="inline-block bg-blue-100 p-6 rounded-lg flex items-center space-x-4">
                 <div class="bg-blue-600 p-4 rounded-lg">
                     <i data-lucide="book-check" class="h-8 w-8 text-white"></i>
                 </div>
@@ -75,32 +77,40 @@ else if($role === "user"){
 
         <div>
             <h2 class="text-xl font-semibold text-gray-700 mb-4">Daftar Buku Pinjaman Anda</h2>
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                <ul class="divide-y divide-gray-200">
-                    <?php if (!empty($borrowed_books_list)): ?>
-                        <?php foreach ($borrowed_books_list as $book): ?>
-                            <li class="p-4 flex justify-between items-center">
-                                <div class="flex items-center space-x-3">
-                                    <i data-lucide="book-open" class="h-6 w-6 text-gray-500"></i>
-                                    <span class="font-medium text-gray-800"><?php echo htmlspecialchars($book['judul_buku']); ?></span>
-                                </div>
-                                <div class="text-sm text-gray-600">
-                                    <span class="font-semibold">Batas Pengembalian:</span>
-                                    <span class="text-red-600 font-bold"><?php echo date("d M Y", strtotime($book['tanggal_pengembalian'])); ?></span>
-                                </div>
-                            </li>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <li class="p-6 text-center text-gray-500">
-                            Anda sedang tidak meminjam buku. Saatnya ke perpustakaan!
-                        </li>
-                    <?php endif; ?>
-                </ul>
+            <div class="overflow-x-auto rounded-lg shadow-lg">
+                <table class="min-w-full divide-y divide-gray-200 bg-white">
+                    <thead class="bg-blue-600 text-white uppercase text-sm">
+                        <tr>
+                            <th class="px-6 py-3 text-left">No</th>
+                            <th class="px-6 py-3 text-left">Judul Buku</th>
+                            <th class="px-6 py-3 text-left">Batas Pengembalian</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700 text-sm">
+                        <?php if (!empty($borrowed_books_list)): ?>
+                            <?php $no = 1; ?>
+                            <?php foreach ($borrowed_books_list as $book): ?>
+                                <tr class="hover:bg-gray-50 border-t">
+                                    <td class="px-6 py-4"><?php echo $no++; ?></td>
+                                    <td class="px-6 py-4 font-medium text-gray-900"><?php echo htmlspecialchars($book['judul_buku']); ?></td>
+                                    <td class="px-6 py-4 font-bold text-red-600">
+                                        <?php echo date("d M Y", strtotime($book['tanggal_pengembalian'])); ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="3" class="text-center py-10 text-gray-500">
+                                    Anda sedang tidak meminjam buku. Saatnya ke perpustakaan!
+                                </td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 <?php
 }
-
 require_once __DIR__ . '/../includes/footer.php';
 ?>
