@@ -47,8 +47,15 @@ include("config.php");
                         <span>Kelola Peminjaman</span>
                     </a>
                 <?php elseif ($role === 'user'): ?>
-                    <a href="<?= $base_url ?>/views/buku/list.php" class="hover:text-blue-200">Koleksi Buku</a>
-                    <a href="<?= $base_url ?>/views/peminjaman/list.php" class="hover:text-blue-200">Riwayat Peminjaman</a>
+                    <a href="<?= $base_url ?>/views/dashboard.php" class="inline-flex items-center space-x-2 bg-blue-400 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-md transition duration-300">
+                        <i data-lucide="house" class="h-5 w-5"></i>
+                        <span>Dashboard</span>
+                    <a href="<?= $base_url ?>/views/buku/list.php" class="inline-flex items-center space-x-2 bg-blue-400 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-md transition duration-300">
+                        <i data-lucide="book-copy" class="h-5 w-5"></i>
+                        <span>Koleksi Buku</span>
+                    <a href="<?= $base_url ?>/views/peminjaman/list.php" class="inline-flex items-center space-x-2 bg-blue-400 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-md transition duration-300">
+                        <i data-lucide="hand-helping" class="h-5 w-5"></i>
+                        <span>Riwayat Peminjaman</span>
                 <?php endif; ?>
                 <a href="<?= $base_url ?>/public/auth/logout.php"
                    class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-md transition duration-300">Logout</a>
