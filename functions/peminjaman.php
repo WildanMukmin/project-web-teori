@@ -95,4 +95,23 @@ function updateTransaction($id, $id_anggota, $id_buku, $tanggal_peminjaman, $tan
     $conn->query($sql); 
 }
 
+function getBorrowedBooksByUser($user_id) {
+    global $conn;
+
+    $sql = "
+        SELECT 
+            b.judul AS judul_buku, 
+            t.tanggal_pengembalian 
+        FROM transaksi t 
+        JOIN buku b ON t.id_buku = b.id 
+        WHERE t.id_anggota = $user_id AND t.status = 'dipinjam'
+        ORDER BY t.tanggal_pengembalian ASC
+    ";
+
+    $result = $conn->query($sql);
+    if ($result) {
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+    return [];
+}
 ?>

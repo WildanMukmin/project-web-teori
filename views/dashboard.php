@@ -56,17 +56,8 @@ else if($role === "user"){
     $user_id = $_SESSION['user']['id'];
     $all_my_transactions = getTransactionsById($user_id);
 
-    $borrowed_books_list = [];
-    $borrowed_count = 0;
-
-    if ($all_my_transactions && $all_my_transactions->num_rows > 0) {
-        foreach ($all_my_transactions as $transaction) {
-            if ($transaction['status'] === 'dipinjam') {
-                $borrowed_books_list[] = $transaction;
-                $borrowed_count++;
-            }
-        }
-    }
+    $borrowed_books_list = getBorrowedBooksByUser($user_id);
+    $borrowed_count = count($borrowed_books_list);
 ?>
     <div>
         <h1 class="text-3xl font-bold text-gray-800">Halo, <?php echo htmlspecialchars($user['nama']); ?>!</h1>
