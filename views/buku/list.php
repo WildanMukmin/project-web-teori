@@ -8,11 +8,11 @@ $books = getBooks(); // Ambil data buku dari database
 
 <!-- Tombol atas -->
 <div class="mb-4 flex items-center space-x-2">
-    <a href="../peminjaman/add.php" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+    <!-- Ganti href ke halaman pemilihan buku -->
+    <a href="../peminjaman/pilih_buku.php" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
         + Pinjam Buku
     </a>
-    <!-- Tambah link ID ke add.php -->
-    <a href="add.php?id=0" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+    <a href="add.php" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
         + Tambah Buku
     </a>
 </div>
@@ -41,13 +41,11 @@ $books = getBooks(); // Ambil data buku dari database
                         <td class="px-4 py-2 border"><?= htmlspecialchars($book['tahun_terbit']); ?></td>
                         <td class="px-4 py-2 border"><?= htmlspecialchars($book['kategori']); ?></td>
                         <td class="px-4 py-2 border space-x-1">
-                            <a href="detail.php?id=<?= $book['id']; ?>"
-                               class="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded text-sm">Detail</a>
-                            <a href="edit.php?id=<?= $book['id']; ?>"
-                               class="bg-yellow-500 hover:bg-yellow-600 text-white px-2 py-1 rounded text-sm">Edit</a>
-                            <a href="delete_process.php?id=<?= $book['id']; ?>"
-                               class="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded text-sm"
-                               onclick="return confirm('Yakin ingin menghapus buku ini?')">Hapus</a>
+                            <a href="detail.php?id=<?= $book['id']; ?>" class="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded text-sm">Detail</a>
+                            <a href="edit.php?id=<?= $book['id']; ?>" class="bg-yellow-500 hover:bg-yellow-600 text-white px-2 py-1 rounded text-sm">Edit</a>
+                            <a href="delete_process.php?id=<?= $book['id']; ?>" class="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded text-sm" onclick="return confirm('Yakin ingin menghapus buku ini?')">Hapus</a>
+                            <!-- Tambahkan tombol pinjam untuk tiap buku -->
+                            <a href="../peminjaman/add.php?id=<?= $book['id']; ?>" class="bg-green-500 hover:bg-green-600 text-white px-2 py-1 rounded text-sm">Pinjam</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
