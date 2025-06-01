@@ -11,7 +11,7 @@ $books = getBooks();
         + Pinjam Buku
     </a>
     <a href="add.php" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-        + Tambah Buku
+        + Tambah Buku // Menambahkan buku
     </a>
 </div>
 
