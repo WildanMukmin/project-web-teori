@@ -1,12 +1,5 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-$is_logged_in = isset($_SESSION['user']);
-$username = $is_logged_in ? $_SESSION['user']['nama'] : 'Guest';
-$role = $is_logged_in ? strtolower($_SESSION['user']['role']) : 'guest';
-$base_url = "http://localhost/project-web-teori";
+include("config.php");
 ?>
 <!DOCTYPE html>
 <html lang="id">
