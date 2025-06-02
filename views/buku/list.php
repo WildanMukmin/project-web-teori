@@ -18,7 +18,8 @@ $books = getBooks();
                 <?php foreach ($books as $book): ?>
                     <a href="detail.php?id=<?=$book["id"]?>">
                         <div class="relative rounded-lg overflow-hidden shadow-md">
-                            <img src="<?= htmlspecialchars($book['gambar'] ?? 'https://images.unsplash.com/photo-1746157802345-8bfd4eff66be?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzfHx8ZW58MHx8fHx8'); ?>" 
+                            <img src="<?= htmlspecialchars($book['gambar'] ?? 'https://bukukita.com/babacms/displaybuku/95219_f.jpg'); ?>" 
+                            <img src="<?= htmlspecialchars($book['gambar'] ?? 'https://bukukita.com/babacms/displaybuku/95219_f.jpg'); ?>" 
                             alt="<?= htmlspecialchars($book['judul']); ?>" 
                             class="h-72 w-full object-cover">
                             <div class="absolute bottom-0 w-full bg-black bg-opacity-60 text-white p-2">
@@ -38,8 +39,7 @@ $books = getBooks();
 <?php elseif ($role === "admin"): ?>
     <!-- Tombol atas -->
     <div class="mb-4 flex items-center space-x-2">
-        <a href="../peminjaman/pilih_buku.php" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
-            + Pinjam Buku
+    
         </a>
         <a href="add.php" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
             + Tambah Buku
@@ -73,7 +73,7 @@ $books = getBooks();
                                 <a href="detail.php?id=<?= $book['id']; ?>" class="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded text-sm">Detail</a>
                                 <a href="edit.php?id=<?= $book['id']; ?>" class="bg-yellow-500 hover:bg-yellow-600 text-white px-2 py-1 rounded text-sm">Edit</a>
                                 <a href="delete_process.php?id=<?= $book['id']; ?>" class="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded text-sm" onclick="return confirm('Yakin ingin menghapus buku ini?')">Hapus</a>
-                                <a href="../peminjaman/add.php?id=<?= $book['id']; ?>" class="bg-green-500 hover:bg-green-600 text-white px-2 py-1 rounded text-sm">Pinjam</a>
+                               
                             </td>
                         </tr>
                     <?php endforeach; ?>
