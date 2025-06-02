@@ -3,7 +3,7 @@ $page_title = "Daftar Buku";
 require_once __DIR__ . '/../../includes/header.php';
 require_once __DIR__ . '/../../functions/buku.php';
 
-$books = getBooks(); // Ambil data buku dari database
+$books = getBooks();
 ?>
 
 <?php if ($role === "user"): ?>
