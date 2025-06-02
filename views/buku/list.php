@@ -11,6 +11,7 @@ $books = getBooks(); // Ambil data buku dari database
     <!-- Ganti href ke halaman pemilihan buku -->
     <a href="../peminjaman/pilih_buku.php" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
         + Pinjam Buku
+      <!-- INI DISINI YAA YANG HARUS DIEDIT TAPI GABISA -->
     </a>
     <a href="add.php" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
         + Tambah Buku
