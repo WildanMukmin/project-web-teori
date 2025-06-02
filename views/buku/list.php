@@ -16,16 +16,18 @@ $books = getBooks();
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-6">
             <?php if (!empty($books)): ?>
                 <?php foreach ($books as $book): ?>
-                    <div class="relative rounded-lg overflow-hidden shadow-md">
-                        <img src="<?= htmlspecialchars($book['gambar'] ?? 'https://images.unsplash.com/photo-1746157802345-8bfd4eff66be?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzfHx8ZW58MHx8fHx8'); ?>" 
-                             alt="<?= htmlspecialchars($book['judul']); ?>" 
-                             class="h-72 w-full object-cover">
-                        <div class="absolute bottom-0 w-full bg-black bg-opacity-60 text-white p-2">
-                            <div class="text-sm text-blue-100"><?= htmlspecialchars($book['kategori']); ?></div>
-                            <div class="font-semibold truncate"><?= htmlspecialchars($book['judul']); ?></div>
-                            <div class="text-sm truncate"><?= htmlspecialchars($book['penulis']); ?></div>
+                    <a href="detail.php?id=<?=$book["id"]?>">
+                        <div class="relative rounded-lg overflow-hidden shadow-md">
+                            <img src="<?= htmlspecialchars($book['gambar'] ?? 'https://images.unsplash.com/photo-1746157802345-8bfd4eff66be?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzfHx8ZW58MHx8fHx8'); ?>" 
+                            alt="<?= htmlspecialchars($book['judul']); ?>" 
+                            class="h-72 w-full object-cover">
+                            <div class="absolute bottom-0 w-full bg-black bg-opacity-60 text-white p-2">
+                                <div class="text-sm text-blue-100"><?= htmlspecialchars($book['kategori']); ?></div>
+                                <div class="font-semibold truncate"><?= htmlspecialchars($book['judul']); ?></div>
+                                <div class="text-sm truncate"><?= htmlspecialchars($book['penulis']); ?></div>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 <?php endforeach; ?>
             <?php else: ?>
                 <p class="text-gray-500">Belum ada buku tersedia.</p>
