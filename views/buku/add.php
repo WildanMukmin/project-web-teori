@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $fileName = $isbn . '_' . $cleanTitle . '_' . time() . '.' . pathinfo($_FILES['file_upload']['name'], PATHINFO_EXTENSION);
         $targetFile = $uploadDir . $fileName;
         if (move_uploaded_file($_FILES['file_upload']['tmp_name'], $targetFile)) {
-            $image_path = '/public/images/buku/' . $fileName;
+            $image_path = '/project-web-teori/public/images/buku/' . $fileName;
         }
     }
     $result = addBook($judul, $penulis, $penerbit, $tahun_terbit, $isbn, $kategori, $deskripsi, $stok, $image_path);
