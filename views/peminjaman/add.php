@@ -4,12 +4,11 @@ require_once '../../includes/db_connection.php';
 require_once '../../functions/buku.php';
 require_once '../../includes/gate_auth.php';
 
-// Cek apakah 'id' ada di URL dan valid
-if (!isset($_GET['id']) || empty($_GET['id'])) {
+if (!isset($_GET['id'])) {
     die("ID buku tidak ditemukan. <a href='list.php'>Kembali ke daftar buku</a>");
 }
 
-$id = intval($_GET['id']);
+$id = $_GET['id'];
 
 // Ambil data buku berdasarkan id
 $buku = getBookById($id);
@@ -48,7 +47,7 @@ if (!$buku) {
     
     <div>
         <label class="block font-medium text-gray-700 mb-1">ID Peminjam</label>
-        <input type="text" name="id_peminjam" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+        <input type="text" name="id_peminjam" value="<?= $role == 'user' ? $user_id : '' ?>" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" required>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">

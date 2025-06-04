@@ -15,11 +15,11 @@ function getBookById($id) {
     return $result->fetch_assoc(); // langsung return datanya
 }
 
-function addBook($judul, $penulis, $penerbit, $tahun_terbit, $isbn, $kategori, $deskripsi, $stok) {
+function addBook($judul, $penulis, $penerbit, $tahun_terbit, $isbn, $kategori, $deskripsi, $stok, $image_path) {
     global $conn;
     $sql = "
-        INSERT INTO buku (judul, penulis, penerbit, tahun_terbit, isbn, kategori, deskripsi, stok)
-        VALUES ('$judul', '$penulis', '$penerbit', '$tahun_terbit', '$isbn', '$kategori', '$deskripsi', $stok)
+        INSERT INTO buku (judul, penulis, penerbit, tahun_terbit, isbn, kategori, deskripsi, stok, image_path)
+        VALUES ('$judul', '$penulis', '$penerbit', '$tahun_terbit', '$isbn', '$kategori', '$deskripsi', $stok, '$image_path')
     ";
     $result = $conn->query($sql);
     return $result;

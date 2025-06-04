@@ -1,43 +1,44 @@
 <?php
 $page_title = "Tambah Buku";
-require_once __DIR__ . '/../../includes/header.php';
-require_once __DIR__ . '/../../functions/buku.php';
+require_once '../../includes/header.php';
+require_once '../../functions/buku.php';
 require_once '../../includes/gate_auth.php';
 
 // Proses jika disubmit
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $judul     = $_POST['judul'];
-    $penulis   = $_POST['penulis'];
-    $penerbit  = $_POST['penerbit'];
-    $tahun     = $_POST['tahun'];
-    $isbn      = $_POST['isbn'];
-    $kategori  = $_POST['kategori'];
-    $deskripsi = $_POST['deskripsi'];
-    $stok      = $_POST['stok'];
+    $judul        = $_POST['judul'];
+    $penulis      = $_POST['penulis'];
+    $penerbit     = $_POST['penerbit'];
+    $tahun_terbit = $_POST['tahun_terbit'];
+    $isbn         = $_POST['isbn'];
+    $kategori     = $_POST['kategori'];
+    $deskripsi    = $_POST['deskripsi'];
+    $stok         = $_POST['stok'];
+    $image_path = '';
 
-    // Proses file cover
-    $coverPath = '';
-    if (isset($_FILES['cover']) && $_FILES['cover']['error'] === UPLOAD_ERR_OK) {
-        $uploadDir = __DIR__ . '/../../uploads/';
-        $fileName  = time() . '_' . basename($_FILES['cover']['name']);
+    if (isset($_FILES['file_upload']) && $_FILES['file_upload']['error'] === UPLOAD_ERR_OK) {
+        $uploadDir = '../../public/images/buku/';
+        $cleanTitle = preg_replace('/[^a-zA-Z0-9-_]/', '_', strtolower($judul));
+        $fileName = $isbn . '_' . $cleanTitle . '_' . time() . '.' . pathinfo($_FILES['file_upload']['name'], PATHINFO_EXTENSION);
         $targetFile = $uploadDir . $fileName;
-
-        if (move_uploaded_file($_FILES['cover']['tmp_name'], $targetFile)) {
-            $coverPath = 'uploads/' . $fileName;
+        if (move_uploaded_file($_FILES['file_upload']['tmp_name'], $targetFile)) {
+            $image_path = '/public/images/buku/' . $fileName;
         }
     }
+    $result = addBook($judul, $penulis, $penerbit, $tahun_terbit, $isbn, $kategori, $deskripsi, $stok, $image_path);
 
-    // Simpan ke database
-    $sukses = addBook($judul, $penulis, $penerbit, $tahun, $isbn, $kategori, $deskripsi, $stok, $coverPath);
-
-    if ($sukses) {
-        header('Location: list.php?success=1');
+    if ($result) {
+        header("Location: list.php");
+        $_SESSION["success"] = "Buku berhasil ditambahkan.";
+        $_SESSION['suscess_time'] = time();
         exit;
-    } else {
-        echo "<p class='text-red-500 text-center'>Gagal menambahkan buku. Silakan coba lagi.</p>";
+    }else{
+        $_SESSION["error"] = "Terjadi kesalahan saat menambahkan buku.";
+        $_SESSION['error_time'] = time();
     }
 }
 ?>
+
 
 <div class="flex justify-center items-center min-h-screen bg-gray-100">
     <div class="w-full max-w-md bg-white p-6 rounded shadow-md">
@@ -47,17 +48,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="text" name="judul" placeholder="Judul Buku" class="w-full border p-2 rounded" required>
             <input type="text" name="penulis" placeholder="Penulis" class="w-full border p-2 rounded" required>
             <input type="text" name="penerbit" placeholder="Penerbit" class="w-full border p-2 rounded" required>
-            <input type="number" name="tahun" placeholder="Tahun Terbit" class="w-full border p-2 rounded" required>
+            <input type="number" name="tahun_terbit" placeholder="Tahun Terbit" class="w-full border p-2 rounded" required>
             <input type="text" name="isbn" placeholder="ISBN" class="w-full border p-2 rounded" required>
             <input type="text" name="kategori" placeholder="Kategori" class="w-full border p-2 rounded" required>
             <textarea name="deskripsi" placeholder="Deskripsi Buku" class="w-full border p-2 rounded" rows="3" required></textarea>
             <input type="number" name="stok" placeholder="Stok Buku" class="w-full border p-2 rounded" required>
 
-            <!-- Upload Cover -->
             <div>
                 <label class="block mb-2 text-sm font-medium text-gray-700">Upload Cover Buku</label>
                 <label
-                    for="cover"
+                    for="file_upload"
                     class="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition"
                 >
                     <div class="flex flex-col items-center justify-center pt-5 pb-6">
@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </p>
                         <p class="text-xs text-gray-500">PNG, JPG, JPEG (maks 2MB)</p>
                     </div>
-                    <input id="cover" name="cover" type="file" accept="image/*" class="hidden" onchange="previewImage(event)" required>
+                    <input id="file_upload" name="file_upload" type="file" accept="image/*" class="hidden" onchange="previewImage(event)" required>
                 </label>
                 <div id="imagePreview" class="mt-4 hidden">
                     <p class="text-sm text-gray-600 mb-2">Pratinjau Gambar:</p>
@@ -93,7 +93,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 </div>
 
-<!-- Script preview gambar -->
 <script>
     function previewImage(event) {
         const input = event.target;
@@ -111,4 +110,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 </script>
 
-<?php require_once __DIR__ . '/../../includes/footer.php'; ?>
+<?php require_once '../../includes/footer.php'; ?>
