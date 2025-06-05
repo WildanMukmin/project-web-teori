@@ -26,6 +26,16 @@ function getTransactions() {
     return $result;
 }
 
+function getTotalBorrowedBooks() {
+    global $conn;
+    $sql = "SELECT COUNT(id) as total_borrowed FROM transaksi WHERE status = 'dipinjam'";
+    $result = $conn->query($sql);
+    if ($result) {
+        return $result->fetch_assoc()['total_borrowed'];
+    }
+    return 0;
+}
+
 function getTransactionsById($id) {
     global $conn;
 
