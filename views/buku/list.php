@@ -17,7 +17,7 @@ $books = getBooks();
                 <?php foreach ($books as $book): ?>
                     <a href="detail.php?id=<?= $book["id"] ?>">
                         <div class="relative rounded-lg overflow-hidden shadow-md">
-                            <img src="<?= htmlspecialchars($book['image_path'] ?? 'https://bukukita.com/babacms/displaybuku/95219_f.jpg'); ?>"
+                            <img src="<?= htmlspecialchars($book['image_path'] ?? 'https://image.gramedia.net/rs:fit:0:0/plain/https://cdn.gramedia.com/uploads/items/img20220905_11324048.jpg'); ?>"
                                 alt="<?= htmlspecialchars($book['judul']); ?>" class="h-72 w-full object-cover">
                             <div class="absolute bottom-0 w-full bg-black bg-opacity-60 text-white p-2">
                                 <div class="text-sm text-blue-100"><?= htmlspecialchars($book['kategori']); ?></div>
