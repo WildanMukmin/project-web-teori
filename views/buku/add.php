@@ -14,18 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $kategori     = $_POST['kategori'];
     $deskripsi    = $_POST['deskripsi'];
     $stok         = $_POST['stok'];
-    $image_path = '';
-
-    if (isset($_FILES['file_upload']) && $_FILES['file_upload']['error'] === UPLOAD_ERR_OK) {
-        $uploadDir = '../../public/images/buku/';
-        $cleanTitle = preg_replace('/[^a-zA-Z0-9-_]/', '_', strtolower($judul));
-        $fileName = $isbn . '_' . $cleanTitle . '_' . time() . '.' . pathinfo($_FILES['file_upload']['name'], PATHINFO_EXTENSION);
-        $targetFile = $uploadDir . $fileName;
-        if (move_uploaded_file($_FILES['file_upload']['tmp_name'], $targetFile)) {
-            $image_path = '/project-web-teori/public/images/buku/' . $fileName;
-        }
-    }
-    $result = addBook($judul, $penulis, $penerbit, $tahun_terbit, $isbn, $kategori, $deskripsi, $stok, $image_path);
+    $image        = $_FILES['file_upload'];
+    $result = addBook($judul, $penulis, $penerbit, $tahun_terbit, $isbn, $kategori, $deskripsi, $stok, $image);
 
     if ($result) {
         header("Location: list.php");

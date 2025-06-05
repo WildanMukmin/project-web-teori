@@ -15,6 +15,16 @@ function getMember($member_id) {
     return $result->fetch_assoc();
 }
 
+function getTotalMembers() {
+    global $conn;
+    $sql = "SELECT COUNT(id) as total FROM anggota";
+    $result = $conn->query($sql);
+    if ($result) {
+        return $result->fetch_assoc()['total'];
+    }
+    return 0;
+}
+
 function addMember($nama, $email, $password, $nomor, $alamat) {
     global $conn;
     // Validasi data tidak kosong (opsional tambahan)

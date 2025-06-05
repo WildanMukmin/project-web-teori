@@ -58,7 +58,7 @@ if (isset($_SESSION['error_time']) && time() - $_SESSION['error_time'] > 10) {
                             <td class="px-6 py-4"><?php echo htmlspecialchars($member['email']?? ''); ?></td>
                             <td class="px-6 py-4"><?php echo htmlspecialchars($member['alamat']?? ''); ?></td>
                             <td class="px-6 py-4"><?php echo htmlspecialchars($member['nomor']?? ''); ?></td>
-                            <td class="px-6 py-4 text-center space-x-2">
+                            <td class="px-6 py-4 text-center space-x-2 flex">
                                 <a href="edit.php?id=<?php echo $member['id']; ?>" class="text-blue-600 hover:underline text-sm">✏️ Edit</a>
                                 <a href="delete.php?id=<?php echo $member['id']; ?>" class="text-red-600 hover:underline text-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus anggota ini?');">🗑️ Hapus</a>
                             </td>

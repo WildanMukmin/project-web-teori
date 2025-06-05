@@ -1,6 +1,8 @@
 <?php
 require_once __DIR__ . '/../includes/header.php';
-require_once __DIR__ . '/../functions/dashboard.php';
+require_once __DIR__ . '/../functions/anggota.php';
+require_once __DIR__ . '/../functions/buku.php';
+require_once __DIR__ . '/../functions/peminjaman.php';
 require_once '../includes/gate_auth.php';
 
 $user = $_SESSION['user'];

@@ -16,12 +16,10 @@ $books = getBooks();
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-6">
             <?php if (!empty($books)): ?>
                 <?php foreach ($books as $book): ?>
-                    <a href="detail.php?id=<?=$book["id"]?>">
+                    <a href="detail.php?id=<?= $book["id"] ?>">
                         <div class="relative rounded-lg overflow-hidden shadow-md">
-                            <img src="<?= htmlspecialchars($book['gambar'] ?? 'https://bukukita.com/babacms/displaybuku/95219_f.jpg'); ?>" 
-                            <img src="<?= htmlspecialchars($book['gambar'] ?? 'https://bukukita.com/babacms/displaybuku/95219_f.jpg'); ?>" 
-                            alt="<?= htmlspecialchars($book['judul']); ?>" 
-                            class="h-72 w-full object-cover">
+                            <img src="<?= htmlspecialchars($book['image_path'] ?? 'https://bukukita.com/babacms/displaybuku/95219_f.jpg'); ?>"
+                                alt="<?= htmlspecialchars($book['judul']); ?>" class="h-72 w-full object-cover">
                             <div class="absolute bottom-0 w-full bg-black bg-opacity-60 text-white p-2">
                                 <div class="text-sm text-blue-100"><?= htmlspecialchars($book['kategori']); ?></div>
                                 <div class="font-semibold truncate"><?= htmlspecialchars($book['judul']); ?></div>
@@ -37,54 +35,57 @@ $books = getBooks();
     </div>
 
 <?php elseif ($role === "admin"): ?>
-    <!-- Tombol atas -->
-    <div class="mb-4 flex items-center space-x-2">
-    
-        </a>
-        <a href="add.php" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-            + Tambah Buku
-        </a>
-    </div>
+    <div class="container mx-auto px-4 py-6">
 
-    <!-- Judul Halaman -->
-    <h2 class="text-2xl font-bold text-blue-800 mb-4">Daftar Buku</h2>
+        <div class="flex justify-between items-center mb-4">
+            <h1 class="text-3xl font-bold text-gray-800">📚 Daftar Buku</h1>
+            <a href="../buku/list.php"
+                class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-md shadow transition duration-200">
+                + Tambah Buku
+            </a>
+        </div>
 
-    <!-- Tabel Daftar Buku -->
-    <div class="overflow-x-auto bg-white shadow-md rounded-lg">
-        <table class="w-full table-auto border border-gray-200">
-            <thead class="bg-blue-100 text-blue-800">
-                <tr>
-                    <th class="px-4 pygi-2 border">Judul</th>
-                    <th class="px-4 py-2 border">Penulis</th>
-                    <th class="px-4 py-2 border">Tahun</th>
-                    <th class="px-4 py-2 border">Kategori</th>
-                    <th class="px-4 py-2 border">Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if (!empty($books)): ?>
-                    <?php foreach ($books as $book): ?>
-                        <tr class="text-center hover:bg-gray-50">
-                            <td class="px-4 py-2 border"><?= htmlspecialchars($book['judul']); ?></td>
-                            <td class="px-4 py-2 border"><?= htmlspecialchars($book['penulis']); ?></td>
-                            <td class="px-4 py-2 border"><?= htmlspecialchars($book['tahun_terbit']); ?></td>
-                            <td class="px-4 py-2 border"><?= htmlspecialchars($book['kategori']); ?></td>
-                            <td class="px-4 py-2 border space-x-1">
-                                <a href="detail.php?id=<?= $book['id']; ?>" class="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded text-sm">Detail</a>
-                                <a href="edit.php?id=<?= $book['id']; ?>" class="bg-yellow-500 hover:bg-yellow-600 text-white px-2 py-1 rounded text-sm">Edit</a>
-                                <a href="delete_process.php?id=<?= $book['id']; ?>" class="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded text-sm" onclick="return confirm('Yakin ingin menghapus buku ini?')">Hapus</a>
-                               
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php else: ?>
+        <div class="overflow-x-auto bg-white shadow-md rounded-lg">
+            <table class="w-full table-auto border border-gray-200">
+                <thead class="bg-blue-100 text-blue-800">
                     <tr>
-                        <td colspan="5" class="text-center py-4 text-gray-500">Belum ada data buku.</td>
+                        <th class="px-4 pygi-2 border">Judul</th>
+                        <th class="px-4 py-2 border">Penulis</th>
+                        <th class="px-4 py-2 border">Tahun</th>
+                        <th class="px-4 py-2 border">Kategori</th>
+                        <th class="px-4 py-2 border">Aksi</th>
                     </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php if (!empty($books)): ?>
+                        <?php foreach ($books as $book): ?>
+                            <tr class="text-center hover:bg-gray-50">
+                                <td class="px-4 py-2 border"><?= htmlspecialchars($book['judul']); ?></td>
+                                <td class="px-4 py-2 border"><?= htmlspecialchars($book['penulis']); ?></td>
+                                <td class="px-4 py-2 border"><?= htmlspecialchars($book['tahun_terbit']); ?></td>
+                                <td class="px-4 py-2 border"><?= htmlspecialchars($book['kategori']); ?></td>
+                                <td class="px-4 py-2 border space-x-1">
+                                    <a href="detail.php?id=<?= $book['id']; ?>"
+                                        class="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded text-sm">Detail</a>
+                                    <a href="edit.php?id=<?= $book['id']; ?>"
+                                        class="bg-yellow-500 hover:bg-yellow-600 text-white px-2 py-1 rounded text-sm">Edit</a>
+                                    <a href="delete_process.php?id=<?= $book['id']; ?>"
+                                        class="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded text-sm"
+                                        onclick="return confirm('Yakin ingin menghapus buku ini?')">Hapus</a>
+
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="5" class="text-center py-4 text-gray-500">Belum ada data buku.</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
+
 <?php endif; ?>
 
 <?php require_once __DIR__ . '/../../includes/footer.php'; ?>

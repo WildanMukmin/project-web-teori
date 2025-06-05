@@ -18,7 +18,7 @@ if (!$book) {
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white shadow-xl rounded-2xl p-6">
         <!-- Cover Buku -->
         <div class="flex justify-center items-start">
-            <img src = "<?php echo htmlspecialchars($book['image_path']); ?>" alt="Cover Buku" class="rounded-lg shadow-lg w-full max-w-xs transition-transform duration-300 hover:scale-105">
+            <img src = "<?= htmlspecialchars($book['image_path'] ?? 'https://bukukita.com/babacms/displaybuku/95219_f.jpg'); ?>" alt="Cover Buku" class="rounded-lg shadow-lg w-full max-w-xs transition-transform duration-300 hover:scale-105">
         </div>
 
         <!-- Detail Buku -->
