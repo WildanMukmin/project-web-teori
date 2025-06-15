@@ -95,8 +95,19 @@ function deleteTransactionById($id) {
 
 function addTransaction($id_anggota, $id_buku, $tanggal_peminjaman, $tanggal_pengembalian) {
     global $conn;
-    $sql = "INSERT INTO transaksi (id_anggota, id_buku, tanggal_peminjaman, tanggal_pengembalian) VALUES ($id_anggota, $id_buku, '$tanggal_peminjaman', '$tanggal_pengembalian')";
-    $conn->query($sql);
+    $sql = "SELECT stok FROM buku WHERE id = $id_buku";
+    $result = $conn->query($sql);
+    if($result && $result->fetch_assoc()['stok'] > 0) {
+        $sql = "INSERT INTO transaksi (id_anggota, id_buku, tanggal_peminjaman, tanggal_pengembalian) VALUES ($id_anggota, $id_buku, '$tanggal_peminjaman', '$tanggal_pengembalian')";
+        $conn->query($sql);
+        $sql = "UPDATE buku SET stok = stok - 1 WHERE id = $id_buku";
+        $conn->query($sql);
+        $_SESSION['success'] = "Peminjaman Berhasil";
+        $_SESSION['success_time'] = time();
+    }else{
+        $_SESSION['error'] = "Stok Buku tidak tersedia";
+        $_SESSION['error_time'] = time();
+    }
 }
 
 function updateTransaction($id, $id_anggota, $id_buku, $tanggal_peminjaman, $tanggal_pengembalian, $status) {
