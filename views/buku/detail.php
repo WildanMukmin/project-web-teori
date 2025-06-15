@@ -16,10 +16,19 @@ if (!$book) {
 
 <div class="max-w-6xl mx-auto mt-12 px-4 md:px-6">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white shadow-xl rounded-2xl p-6">
-        <!-- Cover Buku -->
-        <div class="flex justify-center items-start">
-            <img src = "<?= htmlspecialchars($book['image_path'] ?? 'https://bukukita.com/babacms/displaybuku/95219_f.jpg'); ?>" alt="Cover Buku" class="rounded-lg shadow-lg w-full max-w-xs transition-transform duration-300 hover:scale-105">
-        </div>
+       <!-- Cover Buku -->
+<div class="flex justify-center items-start">
+    <?php
+        // Gunakan URL gambar dari database jika ada, jika tidak pakai default
+        $image_url = !empty($book['image_path'])
+            ? htmlspecialchars($book['image_path'])
+            : 'https://via.placeholder.com/200x300?text=No+Cover';
+    ?>
+    <img src="<?= $image_url; ?>"
+         onerror="this.onerror=null;this.src='https://via.placeholder.com/200x300?text=No+Cover';"
+         alt="Cover Buku"
+         class="rounded-lg shadow-lg w-full max-w-xs transition-transform duration-300 hover:scale-105">
+</div>
 
         <!-- Detail Buku -->
         <div class="space-y-4">
