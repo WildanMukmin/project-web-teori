@@ -46,8 +46,8 @@ $transaksi = getTransactionById($id);
       <div>
         <label class="block font-medium text-gray-700 mb-1">Status</label>
         <select name="status" class="w-full px-4 py-2 border rounded-md">
-          <option value="Dipinjam" <?= $transaksi['status'] == 'Dipinjam' ? 'selected' : '' ?>>Dipinjam</option>
-          <option value="Dikembalikan" <?= $transaksi['status'] == 'Dikembalikan' ? 'selected' : '' ?>>Dikembalikan</option>
+          <option value="dipinjam" <?= $transaksi['status'] == 'dipinjam' ? 'selected' : '' ?>>Dipinjam</option>
+          <option value="dikembalikan" <?= $transaksi['status'] == 'dikembalikan' ? 'selected' : '' ?>>Dikembalikan</option>
         </select>
       </div>
 

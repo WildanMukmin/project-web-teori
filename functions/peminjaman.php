@@ -112,8 +112,41 @@ function addTransaction($id_anggota, $id_buku, $tanggal_peminjaman, $tanggal_pen
 
 function updateTransaction($id, $id_anggota, $id_buku, $tanggal_peminjaman, $tanggal_pengembalian, $status) {
     global $conn;
-    $sql = "UPDATE transaksi SET id_anggota = $id_anggota, id_buku = $id_buku, tanggal_peminjaman = '$tanggal_peminjaman', tanggal_pengembalian = '$tanggal_pengembalian', status = '$status' WHERE id = $id";
-    $conn->query($sql); 
+
+    $sql_old = "SELECT status FROM transaksi WHERE id = $id";
+    $result_old = $conn->query($sql_old);
+
+    if (!$result_old) {
+        $_SESSION['error'] = "Gagal mengambil data lama transaksi: " . $conn->error;
+        $_SESSION['error_time'] = time();
+        return;
+    }
+
+    $old_status_data = $result_old->fetch_assoc();
+    $old_status = $old_status_data['status'];
+
+    $sql_update = "UPDATE transaksi SET 
+        id_anggota = $id_anggota, 
+        id_buku = $id_buku, 
+        tanggal_peminjaman = '$tanggal_peminjaman', 
+        tanggal_pengembalian = '$tanggal_pengembalian', 
+        status = '$status' 
+        WHERE id = $id";
+    $result_update = $conn->query($sql_update);
+
+    if ($result_update) {
+        if ($old_status == 'dipinjam' && $status == 'dikembalikan') {
+            $conn->query("UPDATE buku SET stok = stok + 1 WHERE id = $id_buku");
+        } elseif ($old_status == 'dikembalikan' && $status == 'dipinjam') {
+            $conn->query("UPDATE buku SET stok = stok - 1 WHERE id = $id_buku");
+        }
+
+        $_SESSION['success'] = "Update Peminjaman Berhasil";
+        $_SESSION['success_time'] = time();
+    } else {
+        $_SESSION['error'] = "Update Peminjaman Gagal: " . $conn->error;
+        $_SESSION['error_time'] = time();
+    }
 }
 
 function getBorrowedBooksByUser($user_id) {
