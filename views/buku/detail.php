@@ -3,7 +3,6 @@ $page_title = "Detail Buku";
 require_once __DIR__ . '/../../includes/header.php';
 require_once __DIR__ . '/../../functions/buku.php';
 
-// Validasi ID buku dari parameter GET
 $id = isset($_GET['id']) ? $_GET['id'] : null;
 $book = $id ? getBookById($id) : null;
 
@@ -16,16 +15,13 @@ if (!$book) {
 
 <div class="max-w-6xl mx-auto mt-12 px-4 md:px-6">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white shadow-xl rounded-2xl p-6">
-       <!-- Cover Buku -->
 <div class="flex justify-center items-start">
     <?php
-        // Gunakan URL gambar dari database jika ada, jika tidak pakai default
         $image_url = !empty($book['image_path'])
             ? htmlspecialchars($book['image_path'])
             : 'https://via.placeholder.com/200x300?text=No+Cover';
     ?>
     <img src="<?= $image_url; ?>"
-         onerror="this.onerror=null;this.src='https://via.placeholder.com/200x300?text=No+Cover';"
          alt="Cover Buku"
          class="rounded-lg shadow-lg w-full max-w-xs transition-transform duration-300 hover:scale-105">
 </div>
@@ -75,17 +71,21 @@ if (!$book) {
 
             <!-- Tombol Aksi -->
             <div class="mt-6 flex gap-4">
-    <a href="../peminjaman/add.php?id=<?php echo $book['id']; ?>"
-       class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-xl shadow-md transition">
-         Pinjam Buku
-    </a>
-    <a href="list.php"
-       class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold px-5 py-2 rounded-xl transition">
-         Kembali
-    </a>
-</div>
-
+                <div class="mt-6 flex gap-4">
+                    <?php if ($book['stok'] > 0): ?>
+                        <a href="../peminjaman/add.php?id=<?php echo $book['id']; ?>"
+                        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-xl shadow-md transition">
+                        Pinjam Buku
+                        </a>
+                    <?php endif; ?>
+                    <?php if ($book['stok'] <= 0): ?>
+                        <button disabled class="bg-blue-700 text-white font-semibold px-5 py-2 rounded-xl shadow-md transition disabled:cursor-not-allowed disabled:opacity-60">Stok habis</button>
+                    <?php endif; ?>
+                <a href="list.php"
+                class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold px-5 py-2 rounded-xl transition">
+                    Kembali
                 </a>
+            </div>
             </div>
         </div>
     </div>

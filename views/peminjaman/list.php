@@ -125,7 +125,7 @@ if ($data_user_result && $data_user_result->num_rows > 0) {
                   $no = 1;
                   foreach ($peminjaman as $row): 
               ?>
-                <tr class="hover:bg-gray-50 border-t">
+                <tr class="hover:bg-gray-200 border-t">
                   <td class="px-6 py-4"><?= $no++ ?></td>
                   <td class="px-6 py-4"><?= htmlspecialchars($row['nama_anggota']) ?></td>
                   <td class="px-6 py-4"><?= htmlspecialchars($row['judul_buku']) ?></td>
