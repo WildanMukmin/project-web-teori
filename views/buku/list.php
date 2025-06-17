@@ -41,7 +41,6 @@ $books = getBooks();
                 + Tambah Buku
             </a>
         </div>
-
         <div class="overflow-x-auto rounded-lg shadow">
             <table class="min-w-full divide-y divide-gray-200 bg-white">
                 <thead class="bg-blue-600 text-white uppercase text-sm">
