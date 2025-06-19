@@ -7,16 +7,6 @@ require_once '../../includes/gate_admin.php';
 $members = getMembers();
 ?>
 
-<?php
-if (isset($_SESSION['success_time']) && time() - $_SESSION['success_time'] > 10) {
-    unset($_SESSION['success'], $_SESSION['success_time']);
-}
-
-if (isset($_SESSION['error_time']) && time() - $_SESSION['error_time'] > 10) {
-    unset($_SESSION['error'], $_SESSION['error_time']);
-}
-?>
-
 <div class="container mx-auto px-4 py-6">
     <div class="flex justify-between items-center mb-4">
         <h1 class="text-3xl font-bold text-gray-800">👥 Manajemen Anggota</h1>
