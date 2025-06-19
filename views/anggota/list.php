@@ -25,16 +25,16 @@ if (isset($_SESSION['error_time']) && time() - $_SESSION['error_time'] > 10) {
         </a>
     </div>
     <div>
-        <?php if (isset($_SESSION['success'])): ?>
-            <div class="bg-green-100 text-green-700 px-4 py-3 mb-4 rounded-lg">
-                <?php echo $_SESSION['success']; ?>
-            </div>
-        <?php endif; ?>
-        <?php if (isset($_SESSION['error'])): ?>
-            <div class="bg-red-100 text-red-700 px-4 py-3 mb-4 rounded-lg">
-                <?php echo $_SESSION['error']; ?>
-            </div>
-        <?php endif; ?>
+      <?php if (isset($_SESSION['error'])): ?>
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+          <?= $_SESSION['error']; unset($_SESSION['error']); ?>
+        </div>
+      <?php endif; ?>
+      <?php if (isset($_SESSION['success'])): ?>
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+          <?= $_SESSION['success']; unset($_SESSION['success']); ?>
+        </div>
+      <?php endif; ?>
     </div>
     <div class="overflow-x-auto rounded-lg shadow">
         <table class="min-w-full divide-y divide-gray-200 bg-white">

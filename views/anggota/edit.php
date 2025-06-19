@@ -17,9 +17,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if (updateMember($member_id, $nama, $alamat, $nomor)) {
         header("Location: list.php?status=updated");
+        $_SESSION['success'] = "Data anggota berhasil diperbarui.";
         exit;
     } else {
-        $error_message = "Gagal memperbarui data anggota. Silakan coba lagi.";
+        $_SESSION['error'] = "Gagal memperbarui data anggota. Silakan coba lagi.";
     }
 }
 
@@ -33,11 +34,16 @@ if (!$member) {
 <div class="container mx-auto px-4 py-8 max-w-2xl">
     <h1 class="text-3xl font-bold mb-6">✏️ Edit Data Anggota</h1>
 
-    <?php if (isset($error_message)): ?>
-        <div class="bg-red-100 text-red-700 px-4 py-3 mb-4 rounded-lg">
-            <?php echo $error_message; ?>
+      <?php if (isset($_SESSION['error'])): ?>
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+          <?= $_SESSION['error']; unset($_SESSION['error']); ?>
         </div>
-    <?php endif; ?>
+      <?php endif; ?>
+      <?php if (isset($_SESSION['success'])): ?>
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+          <?= $_SESSION['success']; unset($_SESSION['success']); ?>
+        </div>
+      <?php endif; ?>
 
     <div class="bg-white p-8 rounded-lg shadow-md">
         <form action="edit.php?id=<?php echo $member['id']; ?>" method="POST" class="space-y-6">

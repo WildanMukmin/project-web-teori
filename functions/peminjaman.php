@@ -90,7 +90,7 @@ function getTransactionById($id) {
 function deleteTransactionById($id) {
     global $conn;
     $sql = "DELETE FROM transaksi WHERE id = $id";
-    $conn->query($sql);
+    return $conn->query($sql);
 }
 
 function addTransaction($id_anggota, $id_buku, $tanggal_peminjaman, $tanggal_pengembalian) {
