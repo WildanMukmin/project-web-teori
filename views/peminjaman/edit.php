@@ -1,5 +1,5 @@
 <?php
-include_once '../../includes/header.php';
+require_once '../../includes/header.php';
 require_once '../../includes/db_connection.php';
 require_once '../../functions/peminjaman.php';
 require_once '../../includes/gate_admin.php';

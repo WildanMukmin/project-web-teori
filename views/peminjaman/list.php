@@ -1,6 +1,6 @@
 <?php 
-include_once '../../includes/header.php';
-include('../../functions/peminjaman.php');
+require_once '../../includes/header.php';
+require_once'../../functions/peminjaman.php';
 require_once '../../includes/gate_auth.php';
 $data_admin_result = getTransactions();
 $data_user_result = getTransactionsById($_SESSION['user']['id']);
