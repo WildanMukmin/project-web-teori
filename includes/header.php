@@ -17,19 +17,14 @@ include("config.php");
     <header class="bg-blue-700 text-white shadow-lg">
         <nav class="container mx-auto px-4 lg:px-6">
             <div class="flex justify-between items-center py-4">
-                <!-- Logo -->
                 <a href="<?= $base_url ?>/public/index.php" class="text-2xl font-bold text-white hover:text-blue-200 transition-colors duration-200">
                     OnLibrary
                 </a>
-
-                <!-- Mobile menu button -->
                 <button id="mobile-menu-button" class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-white hover:text-blue-200 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white transition-colors duration-200">
                     <span class="sr-only">Open main menu</span>
                     <i data-lucide="menu" class="h-6 w-6" id="menu-icon"></i>
                     <i data-lucide="x" class="h-6 w-6 hidden" id="close-icon"></i>
                 </button>
-
-                <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-4">
                     <?php if ($is_logged_in): ?>
                         <?php if ($role === 'admin'): ?>
@@ -77,8 +72,6 @@ include("config.php");
                     <?php endif; ?>
                 </div>
             </div>
-
-            <!-- Mobile Navigation Menu -->
             <div id="mobile-menu" class="md:hidden hidden">
                 <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-blue-600">
                     <?php if ($is_logged_in): ?>

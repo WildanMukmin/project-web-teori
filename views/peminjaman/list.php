@@ -20,7 +20,6 @@ if ($data_user_result && $data_user_result->num_rows > 0) {
 }
 ?>
 
-<!-- List Peminjaman Admin -->
 <?php if (isset($role) && $role === 'admin'): ?>
   <div class="container mx-auto px-4 py-6">
     <div class="flex justify-between items-center mb-4">
@@ -80,7 +79,6 @@ if ($data_user_result && $data_user_result->num_rows > 0) {
 <?php endif; ?>
 
 
-<!-- List Peminjaman User (Dengan Tab) -->
  <?php if (isset($role) && $role === 'user'): ?>
 <div class="min-h-screen bg-gray-100 px-4 py-8">
   <div class="max-w-6xl mx-auto bg-white shadow-lg rounded-lg p-6">
@@ -96,7 +94,6 @@ if ($data_user_result && $data_user_result->num_rows > 0) {
         </div>
       <?php endif; ?>
 
-    <!-- Tabs -->
     <div class="mb-4 border-b border-gray-200">
       <ul class="flex space-x-4" id="tabs">
         <li>
@@ -108,9 +105,7 @@ if ($data_user_result && $data_user_result->num_rows > 0) {
       </ul>
     </div>
 
-    <!-- Tab Content -->
     <div id="tab-content">
-      <!-- Peminjaman Tab -->
       <div class="tab-pane" id="peminjaman">
         <div class="flex justify-end mb-4">
           <a href="../buku/list.php" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md shadow">+ Tambah Peminjaman</a>
@@ -155,7 +150,6 @@ if ($data_user_result && $data_user_result->num_rows > 0) {
         </div>
       </div>
 
-      <!-- Pengembalian Tab -->
       <div class="tab-pane hidden" id="pengembalian">
         <div class="overflow-x-auto rounded-lg shadow">
           <table class="min-w-full divide-y divide-gray-200 bg-white">

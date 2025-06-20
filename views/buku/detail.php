@@ -26,7 +26,6 @@ if (!$book) {
          class="rounded-lg shadow-lg w-full max-w-xs transition-transform duration-300 hover:scale-105">
 </div>
 
-        <!-- Detail Buku -->
         <div class="space-y-4">
             <h1 class="text-4xl font-extrabold text-gray-800 leading-tight"><?php echo htmlspecialchars($book['judul']); ?></h1>
             <p class="text-gray-600 text-lg"><?php echo htmlspecialchars($book['penulis']); ?> <span class="text-sm text-gray-400">(Penulis)</span></p>
@@ -69,7 +68,6 @@ if (!$book) {
                 </table>
             </div>
 
-            <!-- Tombol Aksi -->
             <div class="mt-6 flex gap-4">
                 <div class="mt-6 flex gap-4">
                     <?php if ($book['stok'] > 0): ?>

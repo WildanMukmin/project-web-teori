@@ -7,7 +7,6 @@ $books = getBooks();
 ?>
 
 <?php if ($role === "user"): ?>
-    <!-- Tampilan pengguna -->
     <div class="max-w-7xl mx-auto px-4 py-8">
         <h1 class="text-3xl font-bold">Rekomendasi Buku</h1>
         <p class="text-gray-600 mt-1">Temukan inspirasi baca kamu!</p>
